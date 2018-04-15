@@ -40,9 +40,8 @@ public class main {
 
         statement = conn.createStatement();
 
-//            String result = "";
         ResultSet rs;
-        rs = statement.executeQuery("SELECT textProcedure FROM Procedure WHERE idProcedure = 2");
+        rs = statement.executeQuery("SELECT textProcedure FROM Procedure ");
 
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount = metaData.getColumnCount();

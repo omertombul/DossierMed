@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class SqlConnection {
     
-    String path = "jdbc:sqlite:C:/Users/Lado/Desktop/Docs/Cours/INF5153/tp3/DossierDataBase.db";
+    String path = "jdbc:sqlite:C:/Users/Lado/Desktop/Docs/Cours/INF5153/DossierMedical/DossierDataBase.db";
     Connection conn = null;
     
     public Connection getConnection() throws SQLException{
