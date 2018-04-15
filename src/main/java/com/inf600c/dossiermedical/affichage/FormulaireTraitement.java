@@ -5,17 +5,28 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import com.inf600c.dossiermedical.domaine.Traitement;
+import application.DB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Lado
  */
 public class FormulaireTraitement extends javax.swing.JFrame {
 
+    Traitement traitement;
+    DB db;
     /**
      * Creates new form FormulaireTraitement
      */
     public FormulaireTraitement() {
         initComponents();
+        
+        traitement = new Traitement();
+        db = new DB();
     }
 
     /**
@@ -28,11 +39,11 @@ public class FormulaireTraitement extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextFieldProcedure = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldMedicament = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        javax.swing.JCheckBox jCheckBoxHospitalisation = new javax.swing.JCheckBox();
         jButtonSomettre = new javax.swing.JButton();
+        jCheckBoxHospitalisation = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,14 +51,14 @@ public class FormulaireTraitement extends javax.swing.JFrame {
 
         jLabel2.setText("Procedure");
 
-        jCheckBoxHospitalisation.setLabel("checkBoxHospitalisation");
-        jCheckBoxHospitalisation.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSomettre.setText("Soumettre");
+        jButtonSomettre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxHospitalisationActionPerformed(evt);
+                jButtonSomettreActionPerformed(evt);
             }
         });
 
-        jButtonSomettre.setText("Soumettre");
+        jCheckBoxHospitalisation.setText("checkBoxHospitalisation");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,16 +70,20 @@ public class FormulaireTraitement extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextFieldProcedure, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jCheckBoxHospitalisation))))
-                    .addComponent(jButtonSomettre))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSomettre)
+                        .addGap(0, 301, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,15 +95,15 @@ public class FormulaireTraitement extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldProcedure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxHospitalisation)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxHospitalisation))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButtonSomettre)
                 .addGap(22, 22, 22))
         );
 
         jTextFieldProcedure.getAccessibleContext().setAccessibleName("textFieldProcedure");
-        jTextField2.getAccessibleContext().setAccessibleName("textFieldMedicament");
+        jTextFieldMedicament.getAccessibleContext().setAccessibleName("textFieldMedicament");
         jLabel2.getAccessibleContext().setAccessibleName("labelProcedure");
         jLabel2.getAccessibleContext().setAccessibleDescription("");
         jButtonSomettre.getAccessibleContext().setAccessibleName("soumettreButton");
@@ -98,10 +113,30 @@ public class FormulaireTraitement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxHospitalisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHospitalisationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxHospitalisationActionPerformed
+    Boolean hospitalisation = false;
+    
+    private void jButtonSomettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSomettreActionPerformed
+        ajouterTraitement();
+        try {
+            db.sauvegarderTraitement(traitement);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormulaireTraitement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSomettreActionPerformed
 
+    private void ajouterTraitement(){
+        if(jCheckBoxHospitalisation.isSelected())
+            traitement.setHospitalisation(1);
+       
+        String procedure = jTextFieldProcedure.getText() == null ? "" : jTextFieldProcedure.getText();
+        if(procedure != "")
+            traitement.setProcedure(procedure);
+        
+        String medicament = jTextFieldMedicament.getText() == null ? "" : jTextFieldMedicament.getText();
+        if(medicament != "")
+            traitement.setMedicament(medicament);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -109,9 +144,10 @@ public class FormulaireTraitement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSomettre;
+    private javax.swing.JCheckBox jCheckBoxHospitalisation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldMedicament;
     private javax.swing.JTextField jTextFieldProcedure;
     // End of variables declaration//GEN-END:variables
 }

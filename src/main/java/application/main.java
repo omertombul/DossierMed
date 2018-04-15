@@ -7,8 +7,6 @@ package application;
 
 import com.inf600c.dossiermedical.affichage.FormulaireTraitement;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -21,11 +19,6 @@ public class main {
     
     public static void main(String args[]) throws SQLException {
         
-        SqlConnection sqlConn = new SqlConnection();
-        conn = sqlConn.getConnection();
-        
-        readSQLData();
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -33,26 +26,5 @@ public class main {
             }
         });
     }    
-    public static void readSQLData() throws SQLException{
-
-
-        Statement statement;
-
-        statement = conn.createStatement();
-
-        ResultSet rs;
-        rs = statement.executeQuery("SELECT textProcedure FROM Procedure ");
-
-        ResultSetMetaData metaData = rs.getMetaData();
-        int columnCount = metaData.getColumnCount();
-
-        while(rs.next()) {
-            for(int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                Object object = rs.getObject(columnIndex);
-                System.out.printf("%s, ", object == null ? "NULL" : object.toString());
-            }
-            System.out.printf("%n");
-        }
-
-    }    
+   
 }
