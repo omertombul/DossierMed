@@ -20,14 +20,12 @@ public class SqlConnection {
     String path = "jdbc:sqlite:C:/Users/Lado/Desktop/Docs/Cours/INF5153/tp3/DossierDataBase.db";
     Connection conn = null;
     
-    public Connection getConnection(){
-        try {
+    public Connection getConnection() throws SQLException{
+        
             conn = DriverManager.getConnection(path);
             System.out.println("Connection to SQLite a été établie.");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
        return conn; 
     }
     
