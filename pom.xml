@@ -6,11 +6,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>databaseID</groupId>
             <artifactId>database</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

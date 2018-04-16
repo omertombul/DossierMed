@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package application;
+package com.inf600c.dossiermedical.application;
 
 //import static application.main.conn;
 import java.sql.*;
@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.inf600c.dossiermedical.domaine.Traitement;
+import com.inf600c.dossiermedical.fondation.SqlConnection;
 
 /**
  *
