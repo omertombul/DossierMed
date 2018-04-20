@@ -45,7 +45,7 @@ public class FormulaireTraitement extends javax.swing.JFrame {
         jButtonSomettre = new javax.swing.JButton();
         jCheckBoxHospitalisation = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Medicament");
 

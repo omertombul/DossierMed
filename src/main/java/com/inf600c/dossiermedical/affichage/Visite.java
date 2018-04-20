@@ -28,8 +28,15 @@ public class Visite extends javax.swing.JFrame {
     private void initComponents() {
 
         ajouterTraitementButton = new javax.swing.JButton();
+        notejTextField = new javax.swing.JTextField();
+        noteLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        diagnostiquejTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        etablissementjTextField = new javax.swing.JTextField();
+        ajouterVisitejButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         ajouterTraitementButton.setText("Traitement");
         ajouterTraitementButton.addActionListener(new java.awt.event.ActionListener() {
@@ -38,21 +45,59 @@ public class Visite extends javax.swing.JFrame {
             }
         });
 
+        noteLabel.setText("Note");
+
+        jLabel1.setText("Diagnostique");
+
+        jLabel2.setText("Etablissement");
+
+        ajouterVisitejButton.setText("Ajouter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
-                .addComponent(ajouterTraitementButton)
-                .addGap(59, 59, 59))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ajouterVisitejButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(noteLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(notejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(etablissementjTextField)
+                            .addComponent(diagnostiquejTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addComponent(ajouterTraitementButton)))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(ajouterTraitementButton)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(diagnostiquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ajouterTraitementButton))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(etablissementjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(noteLabel)
+                .addGap(18, 18, 18)
+                .addComponent(notejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ajouterVisitejButton)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,5 +149,12 @@ public class Visite extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouterTraitementButton;
+    private javax.swing.JButton ajouterVisitejButton;
+    private javax.swing.JTextField diagnostiquejTextField;
+    private javax.swing.JTextField etablissementjTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel noteLabel;
+    private javax.swing.JTextField notejTextField;
     // End of variables declaration//GEN-END:variables
 }

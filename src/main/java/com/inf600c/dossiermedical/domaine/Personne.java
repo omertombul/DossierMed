@@ -5,10 +5,42 @@
  */
 package com.inf600c.dossiermedical.domaine;
 
+import java.sql.Date;
+
 /**
  *
  * @author omeee
  */
 public class Personne {
+    
+    private String nom;
+    private String prenom;
+    private Date dateNaissanse;
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public Date getDateNaissanse() {
+        return dateNaissanse;
+    }
+
+    public void setDateNaissanse(Date dateNaissanse) {
+        this.dateNaissanse = dateNaissanse;
+    }
+    
+    
     
 }

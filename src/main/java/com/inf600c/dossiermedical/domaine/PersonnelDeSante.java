@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.inf600c.dossiermedical.affichage;
+package com.inf600c.dossiermedical.domaine;
 
 /**
  *
- * @author omeee
+ * @author Lado
  */
-public class AffichageDossier {
+public class PersonnelDeSante extends Personnel{
     
 }
