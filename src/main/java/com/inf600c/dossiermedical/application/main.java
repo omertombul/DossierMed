@@ -5,7 +5,7 @@
  */
 package com.inf600c.dossiermedical.application;
 
-import com.inf600c.dossiermedical.affichage.Dossier;
+import com.inf600c.dossiermedical.affichage.FormulaireDossier;
 import com.inf600c.dossiermedical.affichage.FormulaireTraitement;
 import java.sql.*;
 
@@ -23,7 +23,7 @@ public class main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dossier().setVisible(true);
+                new FormulaireDossier().setVisible(true);
             }
         });
         

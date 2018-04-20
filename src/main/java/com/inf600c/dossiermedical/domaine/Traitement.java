@@ -11,8 +11,9 @@ package com.inf600c.dossiermedical.domaine;
  */
 public class Traitement {
 
-    String medicament;
-    String procedure;
+    private String descriptionTraitement;
+    private String medicament;
+    private String procedure;
     Integer hospitalisation = 0;
   
     
@@ -39,6 +40,14 @@ public class Traitement {
 
     public Integer getHospitalisation() {
         return hospitalisation;
+    }
+
+    public String getDescriptionTraitement() {
+        return descriptionTraitement;
+    }
+
+    public void setDescriptionTraitement(String descriptionTraitement) {
+        this.descriptionTraitement = descriptionTraitement;
     }
     
     

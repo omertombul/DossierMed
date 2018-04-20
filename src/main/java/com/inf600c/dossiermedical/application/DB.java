@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.inf600c.dossiermedical.domaine.Traitement;
+import com.inf600c.dossiermedical.domaine.Visite;
+import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.fondation.SqlConnection;
 
 /**
@@ -22,8 +24,11 @@ public class DB {
     
     public Connection conn;
     
+    CreationTables CreationTables = new CreationTables();
+    SqlConnection sqlConn = new SqlConnection();
+    
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
-        SqlConnection sqlConn = new SqlConnection();
+        
         conn = sqlConn.getConnection();
         
         int idTraitement = getLastId("Traitement", "idTraitement") + 1;
@@ -35,6 +40,18 @@ public class DB {
  //       statement.executeUpdate("INSERT INTO Traitement VALUES (1, 0, 'Tyl', 'Mass', 0)");
 //        statement.executeUpdate("INSERT INTO Procedure " + "VALUES (5, 'Hydrotherapie')");
     }
+    
+    public void sauvegarderVisite(Visite visite) throws SQLException{
+
+        conn = sqlConn.getConnection();
+        
+        CreationTables.createTableVisite(conn);
+        
+        
+        
+    }
+    
+    
     
     int getLastId(String tableName, String columnName) throws SQLException{
         

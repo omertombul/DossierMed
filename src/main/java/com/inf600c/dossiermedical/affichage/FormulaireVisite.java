@@ -5,16 +5,25 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import com.inf600c.dossiermedical.application.DB;
+import com.inf600c.dossiermedical.domaine.Visite;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Lado
  */
-public class Visite extends javax.swing.JFrame {
+public class FormulaireVisite extends javax.swing.JFrame {
+    
+    Visite visite = new Visite();
+    DB db = new DB();
 
     /**
      * Creates new form Visite
      */
-    public Visite() {
+    public FormulaireVisite() {
         initComponents();
     }
 
@@ -52,6 +61,11 @@ public class Visite extends javax.swing.JFrame {
         jLabel2.setText("Etablissement");
 
         ajouterVisitejButton.setText("Ajouter");
+        ajouterVisitejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajouterVisitejButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +126,14 @@ public class Visite extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_ajouterTraitementButtonActionPerformed
 
+    private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
+        try {
+            db.sauvegarderVisite(visite);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormulaireTraitement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -129,20 +151,21 @@ public class Visite extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Visite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireVisite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Visite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireVisite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Visite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireVisite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Visite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireVisite.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Visite().setVisible(true);
+                new FormulaireVisite().setVisible(true);
             }
         });
     }

@@ -9,12 +9,12 @@ package com.inf600c.dossiermedical.affichage;
  *
  * @author Lado
  */
-public class Dossier extends javax.swing.JFrame {
+public class FormulaireDossier extends javax.swing.JFrame {
 
     /**
      * Creates new form Dossier
      */
-    public Dossier() {
+    public FormulaireDossier() {
         initComponents();
     }
 
@@ -90,7 +90,7 @@ public class Dossier extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Visite().setVisible(true);
+                new FormulaireVisite().setVisible(true);
             }
         });
     }//GEN-LAST:event_entrerButtonActionPerformed
@@ -112,14 +112,15 @@ public class Dossier extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireDossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireDossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireDossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormulaireDossier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         
