@@ -30,24 +30,23 @@ public class DB {
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
         
         conn = sqlConn.getConnection();
+        CreationTables.createTableTraitement(conn);
         
         int idTraitement = getLastId("Traitement", "idTraitement") + 1;
+        traitement.setIdTraitement(idTraitement);
  //       readSQLData();
 
         Statement statement = conn.createStatement();
         
         statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
- //       statement.executeUpdate("INSERT INTO Traitement VALUES (1, 0, 'Tyl', 'Mass', 0)");
-//        statement.executeUpdate("INSERT INTO Procedure " + "VALUES (5, 'Hydrotherapie')");
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException{
 
         conn = sqlConn.getConnection();
-        
         CreationTables.createTableVisite(conn);
         
-        
+        int idVisite = getLastId("Visite", "idVisite") + 1;
         
     }
     

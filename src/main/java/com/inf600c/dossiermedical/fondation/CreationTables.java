@@ -16,15 +16,27 @@ import java.sql.Statement;
 public class CreationTables {
     
     public void createTableVisite(Connection conn) throws SQLException {
-    String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Visite"
-            + "  (idVisite          INTEGER  ,"
-            + "   idMedecin         INTEGER,"
-            + "   idPatient         INTEGER,"
-            + "   nomEtablissement  VARCHAR(50),"
-            + "   dateVisite        DATE)";
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Visite"
+                + "  (idVisite          INTEGER  ,"
+                + "   idMedecin         INTEGER,"
+                + "   idPatient         INTEGER,"
+                + "   nomEtablissement  VARCHAR(50),"
+                + "   dateVisite        DATE)";
 
-    Statement stm = conn.createStatement();
-    stm.execute(sqlCreateTable);
-}
+        Statement stm = conn.createStatement();
+        stm.execute(sqlCreateTable);
+    }
+    
+    public void createTableTraitement(Connection conn) throws SQLException {
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Traitement"
+                + "  (idVisite          INTEGER  ,"
+                + "   idTraitement      INTEGER,"
+                + "   medicament        VARCHAR(50),"
+                + "   procedure         VARCHAR(50),"
+                + "   hospitalisation   INTEGER)";
+
+        Statement stm = conn.createStatement();
+        stm.execute(sqlCreateTable);
+    }
     
 }
