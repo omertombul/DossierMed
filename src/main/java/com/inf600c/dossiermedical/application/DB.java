@@ -72,7 +72,8 @@ public class DB {
     }
     
     public void readSQLData() throws SQLException{
-
+        
+        conn = sqlConn.getConnection();
         Statement statement;
         statement = conn.createStatement();
         
@@ -92,4 +93,23 @@ public class DB {
         }
 
     }  
+    
+    public boolean validerNumAssMaladie(int numAssMaladie) throws SQLException{
+        conn = sqlConn.getConnection();
+        Statement statement;
+        statement = conn.createStatement();
+        
+        ResultSet rs;
+        rs = statement.executeQuery("SELECT numAssMaladie FROM Patient ");
+        
+        while(rs.next()) {
+            Object objectNumAssMaladie = rs.getObject(1);
+            int valueNumAssMaladie = (Integer)objectNumAssMaladie;
+
+            if(valueNumAssMaladie == numAssMaladie)
+                return true;
+        }
+        return false;
+    }
+    
 }

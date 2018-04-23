@@ -17,6 +17,8 @@ public class Visite {
     private Medecin medecin;
     private Patient patient;
     private String nomEtablissement;
+    private String note;
+//    private String diagnostique;
     private Date dateVisite;
 
     public int getIdVisite() {
@@ -65,6 +67,14 @@ public class Visite {
 
     public void setNumAssSociale(int numAssSociale) {
         this.numAssSociale = numAssSociale;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
     
     
