@@ -6,9 +6,11 @@
 package com.inf600c.dossiermedical.affichage;
 
 import com.inf600c.dossiermedical.application.DB;
+import com.inf600c.dossiermedical.domaine.Dossier;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +39,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         entrerButton = new javax.swing.JButton();
         numAssMaladiejTextField = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        codeEmployejTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         visitesjLabel = new javax.swing.JLabel();
@@ -56,7 +58,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         jLabel1.setText("Numero Assurance Maladie Patient");
 
-        jLabel2.setText("ID Professionnel");
+        jLabel2.setText("Code Employe");
 
         visitesjLabel.setText("Visites");
         visitesjLabel.setEnabled(false);
@@ -89,7 +91,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addComponent(entrerButton)
-                            .addComponent(jTextField2))
+                            .addComponent(codeEmployejTextField))
                         .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ouvrirAntecedentsjButton)
@@ -112,7 +114,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codeEmployejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ouvrirAntecedentsjButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,27 +128,34 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
     private void entrerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrerButtonActionPerformed
         
-        String textNumAssMaladie = numAssMaladiejTextField.getText() == null ? "" : numAssMaladiejTextField.getText();
+        String textNumAssMaladie = numAssMaladiejTextField.getText().equals(null) ? "" : numAssMaladiejTextField.getText();
+        String textIDProfessionnel = codeEmployejTextField.getText().equals(null) ? "" : codeEmployejTextField.getText();
         
-        boolean numAssMaladieExiste = false;
-        
-        if(textNumAssMaladie != ""){
-            int numAssMaladie = Integer.parseInt(textNumAssMaladie);
+        if(textNumAssMaladie.equals("") || textIDProfessionnel.equals("")){
+            
+            JOptionPane.showMessageDialog(null, 
+                              "Les champs ID Professionnel et Numéro d'Assurance Maladie doivent etre rempli!", 
+                              "WARNING", 
+                              JOptionPane.WARNING_MESSAGE);
+        }else{
+            
+            Dossier.numAssMaladie = Integer.parseInt(textNumAssMaladie);
+            Dossier.codeEmploye = Integer.parseInt(textIDProfessionnel);
+            
             try {
-                numAssMaladieExiste = db.validerNumAssMaladie(numAssMaladie);
+                Dossier.validerDossier();
             } catch (SQLException ex) {
                 Logger.getLogger(FormulaireDossier.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
-        if(numAssMaladieExiste){
+
             //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
             ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
             listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
             visitesjLabel.setEnabled(rootPaneCheckingEnabled);
             ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
+  
         }
-        
+    
     }//GEN-LAST:event_entrerButtonActionPerformed
 
     private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
@@ -157,18 +166,15 @@ public class FormulaireDossier extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
 
- 
-        
- //   }
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouterVisitejButton;
+    private javax.swing.JTextField codeEmployejTextField;
     private javax.swing.JButton entrerButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> listeVisitesjComboBox;
     private javax.swing.JTextField numAssMaladiejTextField;
     private javax.swing.JButton ouvrirAntecedentsjButton;

@@ -112,4 +112,22 @@ public class DB {
         return false;
     }
     
+    public boolean validerIfExiste(int nombre, String nomColonne, String nomTable) throws SQLException{
+        conn = sqlConn.getConnection();
+        Statement statement;
+        statement = conn.createStatement();
+        
+        ResultSet rs;
+        rs = statement.executeQuery("SELECT " + nomColonne + " FROM " + nomTable );
+        
+        while(rs.next()) {
+            Object objectNombre = rs.getObject(1);
+            int value = (Integer)objectNombre;
+
+            if(value == nombre)
+                return true;
+        }
+        return false;
+    }
+    
 }
