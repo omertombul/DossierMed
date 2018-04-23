@@ -5,7 +5,7 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
-import com.inf600c.dossiermedical.application.DB;
+import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.domaine.Dossier;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -94,7 +94,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                             .addComponent(ouvrirAntecedentsjButton)
                             .addComponent(visitesjLabel)
                             .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(codeEmployejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ouvrirAntecedentsjButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrerButton)
                     .addComponent(ajouterVisitejButton))

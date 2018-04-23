@@ -6,7 +6,7 @@
 package com.inf600c.dossiermedical.affichage;
 
 import com.inf600c.dossiermedical.domaine.Traitement;
-import com.inf600c.dossiermedical.application.DB;
+import com.inf600c.dossiermedical.servicestechniques.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

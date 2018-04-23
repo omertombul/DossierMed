@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.inf600c.dossiermedical.application;
+package com.inf600c.dossiermedical.servicestechniques;
 
 //import static application.main.conn;
 import java.sql.*;

@@ -5,7 +5,7 @@
  */
 package com.inf600c.dossiermedical.domaine;
 
-import com.inf600c.dossiermedical.application.DB;
+import com.inf600c.dossiermedical.servicestechniques.DB;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
