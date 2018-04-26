@@ -94,7 +94,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                             .addComponent(ouvrirAntecedentsjButton)
                             .addComponent(visitesjLabel)
                             .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(codeEmployejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ouvrirAntecedentsjButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrerButton)
                     .addComponent(ajouterVisitejButton))
@@ -138,19 +138,20 @@ public class FormulaireDossier extends javax.swing.JFrame {
             
             Dossier.numAssMaladie = Integer.parseInt(textNumAssMaladie);
             Dossier.codeEmploye = Integer.parseInt(textIDProfessionnel);
+            boolean accesValide = false;
             
             try {
-                Dossier.validerDossier();
+               accesValide = Dossier.validerDossier();
             } catch (SQLException ex) {
                 Logger.getLogger(FormulaireDossier.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            if (accesValide){    
             //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
             ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
             listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
             visitesjLabel.setEnabled(rootPaneCheckingEnabled);
             ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
-  
+            }
         }
     
     }//GEN-LAST:event_entrerButtonActionPerformed

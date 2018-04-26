@@ -19,24 +19,33 @@ public class SqlConnection {
 
     String url = "DossierDataBase.db";
     String path = "jdbc:sqlite:" + url;
-    Connection conn = null;
+    public Connection conn = null;
+    private static SqlConnection instanceConnect;
+   
 
-    public Connection getConnection() throws SQLException {
+    private SqlConnection(){
+       
         try {
-            Class.forName("org.sqlite.JDBC").newInstance();
-        } catch (Exception ex) {
-            System.out.println("Error Connecting.");
-        }
-        try {
-            conn = DriverManager.getConnection(path);
+             Class.forName("org.sqlite.JDBC").newInstance();
+            conn = (Connection)DriverManager.getConnection(path);
             System.out.println("Connection to SQLite a été établie.");
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+        }catch (Exception ex){
+            System.out.println("Class Error" + ex.getMessage());
         }
-
-        return conn;
+    }
+    
+    
+    public static SqlConnection getConnection() {
+       if(instanceConnect == null){
+           instanceConnect = new SqlConnection();
+        }
+        
+       
+        return instanceConnect ;
     }
 
 }

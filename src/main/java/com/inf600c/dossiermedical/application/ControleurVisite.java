@@ -28,10 +28,10 @@ public class ControleurVisite {
     
     public void sauvegarderVisite() throws SQLException{
         
-        int idVisite = db.getLastId("Visite", "idVisite") + 1;
+        //int idVisite = db.getLastId("Visite", "idVisite") + 1;
         
-        visite.setIdVisite(idVisite);
-        visite.setDateVisite(DateVisite.dateDAujourdhui());
+        //visite.setIdVisite(idVisite);
+        //visite.setDateVisite(DateVisite.dateDAujourdhui());
 //        visite.setMedecin(medecin);
         
         

@@ -22,29 +22,32 @@ import com.inf600c.dossiermedical.fondation.SqlConnection;
  */
 public class DB {
     
-    public Connection conn;
     
     CreationTables CreationTables = new CreationTables();
-    SqlConnection sqlConn = new SqlConnection();
+    //SqlConnection sqlConn = new SqlConnection();
+    SqlConnection sq = SqlConnection.getConnection();
     
+    
+            
+            
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
         
-        conn = sqlConn.getConnection();
-        CreationTables.createTableTraitement(conn);
+      
+        CreationTables.createTableTraitement(sq.conn);
         
         int idTraitement = getLastId("Traitement", "idTraitement") + 1;
         traitement.setIdTraitement(idTraitement);
  //       readSQLData();
 
-        Statement statement = conn.createStatement();
+        Statement statement = sq.conn.createStatement();
         
         statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException{
 
-        conn = sqlConn.getConnection();
-        CreationTables.createTableVisite(conn);
+        
+        CreationTables.createTableVisite(sq.conn);
         
         int idVisite = getLastId("Visite", "idVisite") + 1;
         
@@ -59,7 +62,7 @@ public class DB {
         int id=0;
         
         Statement statement;
-        statement = conn.createStatement();
+        statement = sq.conn.createStatement();
         
         ResultSet rs;
         rs = statement.executeQuery(query);
@@ -73,9 +76,9 @@ public class DB {
     
     public void readSQLData() throws SQLException{
         
-        conn = sqlConn.getConnection();
+        
         Statement statement;
-        statement = conn.createStatement();
+        statement = sq.conn.createStatement();
         
         
         ResultSet rs;
@@ -95,9 +98,9 @@ public class DB {
     }  
     
     public boolean validerNumAssMaladie(int numAssMaladie) throws SQLException{
-        conn = sqlConn.getConnection();
+        
         Statement statement;
-        statement = conn.createStatement();
+        statement = sq.conn.createStatement();
         
         ResultSet rs;
         rs = statement.executeQuery("SELECT numAssMaladie FROM Patient ");
@@ -113,9 +116,9 @@ public class DB {
     }
     
     public boolean validerIfExiste(int nombre, String nomColonne, String nomTable) throws SQLException{
-        conn = sqlConn.getConnection();
+       
         Statement statement;
-        statement = conn.createStatement();
+        statement = sq.conn.createStatement();
         
         ResultSet rs;
         rs = statement.executeQuery("SELECT " + nomColonne + " FROM " + nomTable );

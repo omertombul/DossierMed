@@ -43,7 +43,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="110" max="32767" attributes="0"/>
+              <EmptySpace pref="150" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +67,7 @@
                   <Component id="codeEmployejTextField" min="-2" max="-2" attributes="0"/>
                   <Component id="ouvrirAntecedentsjButton" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="entrerButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ajouterVisitejButton" alignment="3" min="-2" max="-2" attributes="0"/>
