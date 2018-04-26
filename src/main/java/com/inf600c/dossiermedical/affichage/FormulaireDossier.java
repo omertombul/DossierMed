@@ -19,11 +19,13 @@ import javax.swing.JOptionPane;
 public class FormulaireDossier extends javax.swing.JFrame {
 
     DB db;
+    public FormulaireDossier instance; 
     
     public FormulaireDossier() {
         initComponents();
-        
+        instance = this;
         db = new DB();
+        
     }
       /**
      * This method is called from within the constructor to initialize the form.
@@ -42,8 +44,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
         listeVisitesjComboBox = new javax.swing.JComboBox<>();
         ouvrirAntecedentsjButton = new javax.swing.JButton();
         ajouterVisitejButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        codeEmployejTextField = new javax.swing.JTextArea();
+        codeEmployejTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -76,32 +77,37 @@ public class FormulaireDossier extends javax.swing.JFrame {
             }
         });
 
-        codeEmployejTextField.setColumns(20);
-        codeEmployejTextField.setRows(5);
-        jScrollPane1.setViewportView(codeEmployejTextField);
+        codeEmployejTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeEmployejTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ajouterVisitejButton)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(numAssMaladiejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(numAssMaladiejTextField)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(entrerButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(codeEmployejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(entrerButton)))
+                        .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ouvrirAntecedentsjButton)
                             .addComponent(visitesjLabel)
-                            .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                            .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ajouterVisitejButton))))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,14 +123,17 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ouvrirAntecedentsjButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entrerButton)
-                    .addComponent(ajouterVisitejButton))
-                .addContainerGap())
+                    .addComponent(ouvrirAntecedentsjButton)
+                    .addComponent(codeEmployejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ajouterVisitejButton)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(entrerButton)
+                        .addGap(27, 27, 27))))
         );
 
         pack();
@@ -166,22 +175,27 @@ public class FormulaireDossier extends javax.swing.JFrame {
     private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new FormulaireVisite().setVisible(true);
+                instance.dispose();
                 
             }
         });
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
+
+    private void codeEmployejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeEmployejTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeEmployejTextFieldActionPerformed
 
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouterVisitejButton;
-    private javax.swing.JTextArea codeEmployejTextField;
+    private javax.swing.JTextField codeEmployejTextField;
     private javax.swing.JButton entrerButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> listeVisitesjComboBox;
     private javax.swing.JTextField numAssMaladiejTextField;
     private javax.swing.JButton ouvrirAntecedentsjButton;
