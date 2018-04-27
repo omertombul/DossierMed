@@ -6,6 +6,7 @@
 package com.inf600c.dossiermedical.servicestechniques;
 
 //import static application.main.conn;
+import com.inf600c.dossiermedical.domaine.Patient;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +16,10 @@ import com.inf600c.dossiermedical.domaine.Traitement;
 import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.fondation.SqlConnection;
+import java.awt.List;
+import java.text.ParseException;
+
+import java.util.Date;
 
 /**
  *
@@ -148,5 +153,35 @@ public class DB {
                 return value;
         }
         return "";
+    }
+    
+    public Patient getParametresPatient(int numAssMaladie) throws SQLException, ParseException{
+        
+        Patient patient = new Patient();
+        
+        Statement statement;
+        statement = sq.conn.createStatement();
+        
+        ResultSet rs;
+        rs = statement.executeQuery("SELECT * FROM Patient WHERE numAssMaladie = " + numAssMaladie);
+        
+        while(rs.next()) {
+            Object objectNumAssMaladie = rs.getObject(1);
+            Object objectDateNaissance = rs.getObject(2);
+            Object objectGenre = rs.getObject(3);
+            Object objectVilleNaissance = rs.getObject(4);
+            Object objectParent1 = rs.getObject(5);
+            Object objectParent2 = rs.getObject(6);
+            
+//            Date newDate = objectDateNaissance.getTimestamp("VALUEDATE");
+            
+ //           java.util.Date dateNaissance = DateVisite.convertStringToDate((String)objectDateNaissance);
+            
+            patient = new Patient((int)objectNumAssMaladie, (String)objectDateNaissance, (int)objectGenre,
+                                   (String)objectVilleNaissance, (String)objectParent1, (String)objectParent2);
+
+        }
+        
+        return patient;
     }
 }

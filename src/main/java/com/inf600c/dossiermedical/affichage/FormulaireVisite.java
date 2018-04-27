@@ -9,6 +9,7 @@ import com.inf600c.dossiermedical.application.ControleurVisite;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.domaine.Visite;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -154,10 +155,12 @@ public class FormulaireVisite extends javax.swing.JFrame {
             ajouterVisite();
         } catch (SQLException ex) {
             Logger.getLogger(FormulaireTraitement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(FormulaireVisite.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
 
-    private void ajouterVisite() throws SQLException{
+    private void ajouterVisite() throws SQLException, ParseException{
         String note = notejTextField.getText() == null ? "" : notejTextField.getText();
         if(!note.equals(""))
             controleurVisite.ajouterNote(note);

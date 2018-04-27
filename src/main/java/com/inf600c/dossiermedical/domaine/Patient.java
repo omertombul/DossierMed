@@ -14,13 +14,23 @@ import java.util.Date;
 public class Patient {
     
     private int numAssMaladie;
-    private Date dateNaissance;
+    private String dateNaissance;
     private int genre;
     private String villeNaissance;
     private String parent1;
     private String parent2;
     
+    public Patient(){}
     
+    public Patient(int numAssMaladie, String dateNaissance, int genre, String villeNaissance, String parent1, String parent2){
+        this.numAssMaladie = numAssMaladie;
+        this.dateNaissance = dateNaissance;
+        this.genre = genre;
+        this.villeNaissance = villeNaissance;
+        this.parent1 = parent1;
+        this.parent2 = parent2;
+        
+    }
 
     public int getNumAssMaladie() {
         return numAssMaladie;
@@ -30,11 +40,11 @@ public class Patient {
         this.numAssMaladie = numAssMaladie;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

@@ -7,10 +7,13 @@ package com.inf600c.dossiermedical.application;
 
 import com.inf600c.dossiermedical.domaine.Dossier;
 import com.inf600c.dossiermedical.domaine.Medecin;
+import com.inf600c.dossiermedical.domaine.Patient;
 import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.servicestechniques.DateVisite;
+import java.awt.List;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 
 /**
@@ -26,14 +29,20 @@ public class ControleurVisite {
         visite.setMedecin(new Medecin(codeEmploye, specialite));
     }
     
+    public void ajouterPatientDansVisite(int numAssMaladie) throws SQLException, ParseException{
+        Patient patient = db.getParametresPatient(numAssMaladie);
+        visite.setPatient(patient);
+    }
     
-    public void sauvegarderVisite() throws SQLException{
+    
+    public void sauvegarderVisite() throws SQLException, ParseException{
         
         int idVisite = db.getLastId("Visite", "idVisite") + 1;
         
         visite.setIdVisite(idVisite);
         visite.setDateVisite(DateVisite.dateDAujourdhui());
         ajouterMedecinDansVisite(Dossier.codeEmploye);
+        ajouterPatientDansVisite(Dossier.numAssMaladie);
         
         db.sauvegarderVisite(visite);
     }

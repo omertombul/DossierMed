@@ -5,6 +5,7 @@
  */
 package com.inf600c.dossiermedical.servicestechniques;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,11 +15,17 @@ import java.util.Date;
  */
 public class DateVisite {
 
-    public static Date dateDAujourdhui(){
+    public static String dateDAujourdhui(){
         
         SimpleDateFormat dayFormatter = new SimpleDateFormat("dd-MM-yyyy");
         
-        return new Date();
+        Date newDate = new Date();
+        
+        return dayFormatter.format(newDate);
     }
+    
+ //   public static Date convertStringToDate(String stringDate) throws ParseException{
+ //       return new SimpleDateFormat("dd-MM-yyyy").parse(stringDate); 
+ //   }
     
 }

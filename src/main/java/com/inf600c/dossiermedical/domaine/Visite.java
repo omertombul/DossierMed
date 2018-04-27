@@ -12,14 +12,14 @@ import java.util.Date;
  */
 public class Visite {
     
-    private int numAssSociale;
+    private int numAssMaladie;
     private int idVisite;
     private Medecin medecin;
     private Patient patient;
     private String nomEtablissement;
     private String note;
 //    private String diagnostique;
-    private Date dateVisite;
+    private String dateVisite;
 
     public int getIdVisite() {
         return idVisite;
@@ -53,20 +53,20 @@ public class Visite {
         this.nomEtablissement = nomEtablissement;
     }
 
-    public Date getDateVisite() {
+    public String getDateVisite() {
         return dateVisite;
     }
 
-    public void setDateVisite(Date dateVisite) {
+    public void setDateVisite(String dateVisite) {
         this.dateVisite = dateVisite;
     }
 
-    public int getNumAssSociale() {
-        return numAssSociale;
+    public int getNumAssMaladie() {
+        return numAssMaladie;
     }
 
-    public void setNumAssSociale(int numAssSociale) {
-        this.numAssSociale = numAssSociale;
+    public void setNumAssMaladie(int numAssMaladie) {
+        this.numAssMaladie = numAssMaladie;
     }
 
     public String getNote() {
