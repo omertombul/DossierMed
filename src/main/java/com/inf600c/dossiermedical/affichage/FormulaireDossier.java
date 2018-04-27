@@ -18,13 +18,11 @@ import javax.swing.JOptionPane;
  */
 public class FormulaireDossier extends javax.swing.JFrame {
 
-    DB db;
     public FormulaireDossier instance; 
     
     public FormulaireDossier() {
         initComponents();
         instance = this;
-        db = new DB();
         
     }
       /**
@@ -177,7 +175,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
             public void run() {
                 
                 new FormulaireVisite().setVisible(true);
-                instance.dispose();
+            //    instance.dispose();
                 
             }
         });
