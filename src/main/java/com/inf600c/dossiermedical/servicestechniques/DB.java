@@ -18,6 +18,7 @@ import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.fondation.SqlConnection;
 import java.awt.List;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
@@ -48,12 +49,18 @@ public class DB {
         statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
     }
     
-    public void sauvegarderVisite(Visite visite) throws SQLException{
+    public void sauvegarderVisite(Visite visite) throws SQLException, ParseException{
 
-        
         CreationTables.createTableVisite(sq.conn);
         
-        int idVisite = getLastId("Visite", "idVisite") + 1;
+        Statement statement = sq.conn.createStatement();
+        
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date parsed = format.parse(visite.getDateVisite());
+        java.sql.Date dateVisite = new java.sql.Date(parsed.getTime());
+        
+        statement.executeUpdate("INSERT INTO Visite VALUES (" + visite.getIdVisite() + ", " + visite.getMedecin().getCodeEmployeMedecin() + ", '" + visite.getPatient().getNumAssMaladie() + "', '" + visite.getNomEtablissement() + "', " + visite.getDateVisite() + ")");
+    
         
     }
     
