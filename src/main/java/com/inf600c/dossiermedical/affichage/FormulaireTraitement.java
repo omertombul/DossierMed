@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class FormulaireTraitement extends javax.swing.JFrame {
 
-    Traitement traitement;
+//    Traitement traitement;
     DB db;
     ControleurTraitement controleurTraitement = new ControleurTraitement(); 
     /**
@@ -27,7 +27,7 @@ public class FormulaireTraitement extends javax.swing.JFrame {
     public FormulaireTraitement() {
         initComponents();
         
-        traitement = new Traitement();
+//        traitement = new Traitement();
         db = new DB();
     }
 
@@ -144,18 +144,21 @@ public class FormulaireTraitement extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxHospitalisationActionPerformed
 
     private void ajouterTraitement() throws SQLException{
+        int hospiatlisation = 0;
+        
         if(jCheckBoxHospitalisation.isSelected())
-            traitement.setHospitalisation(1);
+            hospiatlisation = 1;
+//            traitement.setHospitalisation(1);
        
         String procedure = jTextFieldProcedure.getText() == null ? "" : jTextFieldProcedure.getText();
-        if(!procedure.equals(""))
-            traitement.setProcedure(procedure);
+//        if(!procedure.equals(""))
+//            traitement.setProcedure(procedure);
         
         String medicament = jTextFieldMedicament.getText() == null ? "" : jTextFieldMedicament.getText();
-        if(!medicament.equals(""))
-            traitement.setMedicament(medicament);
+//        if(!medicament.equals(""))
+//            traitement.setMedicament(medicament);
         
-        controleurTraitement.sauvegarderTraitement(traitement);
+        controleurTraitement.sauvegarderTraitement(medicament, procedure, hospiatlisation);
     }
     
     /**

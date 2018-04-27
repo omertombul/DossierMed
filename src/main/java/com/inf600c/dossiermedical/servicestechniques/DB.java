@@ -40,13 +40,12 @@ public class DB {
         
         CreationTables.createTableTraitement(sq.conn);
         
-        int idTraitement = getLastId("Traitement", "idTraitement") + 1;
-        traitement.setIdTraitement(idTraitement);
+        
  //       readSQLData();
 
         Statement statement = sq.conn.createStatement();
         
-        statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
+        statement.executeUpdate("INSERT INTO Traitement VALUES (" + traitement.getIdTraitement() + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException, ParseException{

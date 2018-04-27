@@ -6,6 +6,7 @@
 package com.inf600c.dossiermedical.application;
 
 import com.inf600c.dossiermedical.domaine.Traitement;
+import com.inf600c.dossiermedical.domaine.Traitement.Builder;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import java.sql.SQLException;
 
@@ -18,9 +19,18 @@ public class ControleurTraitement {
     
     
     DB db = new DB();
- //   Traitement traitement = new Traitement();
+    Builder builderTraitement = new Traitement.Builder();
     
-    public void sauvegarderTraitement(Traitement traitement) throws SQLException{
+    public void sauvegarderTraitement(String medicament, String procedure, int hospitalisation) throws SQLException{
+       
+        int idTraitement = db.getLastId("Traitement", "idTraitement") + 1;
+        builderTraitement.setIdTraitement(idTraitement);
+        
+        builderTraitement.setMedicament(medicament);
+        builderTraitement.setProcedure(procedure);
+        builderTraitement.setHospitalisation(hospitalisation);
+        
+        Traitement traitement = builderTraitement.construireTraitement();
         
         db.sauvegarderTraitement(traitement);
         
