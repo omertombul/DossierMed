@@ -11,7 +11,30 @@ package com.inf600c.dossiermedical.domaine;
  */
 public class Medecin extends Personnel{
     
+    private int codeEmployeMedecin;
+    private String specialite;
     
+    public Medecin(int codeEmployeMedecin, String specialite){
+        this.codeEmployeMedecin = codeEmployeMedecin;
+        this.specialite = specialite;
+    }
+    
+
+    public int getCodeEmployeMedecin() {
+        return codeEmployeMedecin;
+    }
+
+    public void setCodeEmployeMedecin(int codeEmploye) {
+        this.codeEmployeMedecin = codeEmploye;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
     
     
     

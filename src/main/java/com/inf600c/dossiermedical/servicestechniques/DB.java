@@ -32,7 +32,6 @@ public class DB {
             
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
         
-      
         CreationTables.createTableTraitement(sq.conn);
         
         int idTraitement = getLastId("Traitement", "idTraitement") + 1;
@@ -55,7 +54,7 @@ public class DB {
     
     
     
-    int getLastId(String tableName, String columnName) throws SQLException{
+    public int getLastId(String tableName, String columnName) throws SQLException{
         
         String query = "SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " DESC LIMIT 1";
         
@@ -133,4 +132,21 @@ public class DB {
         return false;
     }
     
+    public String getspecialteMedecin(int nombre, String nomColResultat, String nomColonne, String nomTable) throws SQLException{
+        
+        Statement statement;
+        statement = sq.conn.createStatement();
+        
+        ResultSet rs;
+        rs = statement.executeQuery("SELECT " + nomColResultat + " FROM " + nomTable + " WHERE " + nomColonne + " = " + nombre);
+        
+        while(rs.next()) {
+            Object objectNombre = rs.getObject(1);
+            String value = (String)objectNombre;
+
+            if(!value.equals(""))
+                return value;
+        }
+        return "";
+    }
 }

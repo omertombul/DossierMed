@@ -24,7 +24,8 @@ public class Dossier {
         db = new DB();
         boolean numAssMaladieExiste = db.validerIfExiste(numAssMaladie, "numAssMaladie", "Patient");
         boolean codeEmployeExiste = db.validerIfExiste(Dossier.codeEmploye, "codeEmploye", "Personnel");
-        
+        boolean medecinExiste = db.validerIfExiste(Dossier.codeEmploye, "codeEmploye", "Medecin");
+
         if(!numAssMaladieExiste ){
             
             JOptionPane.showMessageDialog(null, 
@@ -41,6 +42,8 @@ public class Dossier {
                               "WARNING", 
                               JOptionPane.WARNING_MESSAGE);
             return false;
+        }else if(medecinExiste){
+            
         }
         
         return true;

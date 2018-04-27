@@ -5,7 +5,8 @@
  */
 package com.inf600c.dossiermedical.servicestechniques;
 
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -13,13 +14,11 @@ import java.util.logging.Logger;
  */
 public class DateVisite {
 
-    public DateVisite() {
-    }
-    
-    
-    public static void getVisite(){
-    
-    
+    public static Date dateDAujourdhui(){
+        
+        SimpleDateFormat dayFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        
+        return new Date();
     }
     
 }

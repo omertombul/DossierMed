@@ -5,6 +5,7 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import com.inf600c.dossiermedical.application.ControleurVisite;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.domaine.Visite;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 public class FormulaireVisite extends javax.swing.JFrame {
     
     Visite visite = new Visite();
-    DB db = new DB();
+    ControleurVisite controleurVisite = new ControleurVisite(); 
 
     /**
      * Creates new form Visite
@@ -150,22 +151,22 @@ public class FormulaireVisite extends javax.swing.JFrame {
 
     private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
         try {
-            db.sauvegarderVisite(visite);
+            ajouterVisite();
         } catch (SQLException ex) {
             Logger.getLogger(FormulaireTraitement.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
 
-    private void ajouterVisite(){
+    private void ajouterVisite() throws SQLException{
         String note = notejTextField.getText() == null ? "" : notejTextField.getText();
-        if(note != "")
-            visite.setNote(note);
+        if(!note.equals(""))
+            controleurVisite.ajouterNote(note);
         
         String nomEtablissement = etablissementjTextField.getText() == null ? "" : etablissementjTextField.getText();
-        if(nomEtablissement != "")
-            visite.setNomEtablissement(nomEtablissement);
+        if(!nomEtablissement.equals(""))
+            controleurVisite.ajouterEtablissement(nomEtablissement);
         
-        
+        controleurVisite.sauvegarderVisite();
     }
     
 
