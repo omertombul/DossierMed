@@ -33,19 +33,20 @@ public class DB {
     //SqlConnection sqlConn = new SqlConnection();
     SqlConnection sq = SqlConnection.getConnection();
     
-    
+    // creer novelle ligne avec idTraitemnt dans la table Traitement. 
+    public void creerTraitement(int idTraitement) throws SQLException{
+        CreationTables.createTableTraitement(sq.conn);
+        Statement statement = sq.conn.createStatement();
+        statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '', '', " + 0 + ")");
+    }
             
             
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
-        
-        CreationTables.createTableTraitement(sq.conn);
-        
-        
+   
  //       readSQLData();
 
         Statement statement = sq.conn.createStatement();
-        
-        statement.executeUpdate("INSERT INTO Traitement VALUES (" + traitement.getIdTraitement() + ", " + 0 + ", '" + traitement.getMedicament() + "', '" + traitement.getProcedure() + "', " + traitement.getHospitalisation() + ")");
+        statement.executeUpdate("UPDATE Traitement SET medicament = " + traitement.getMedicament() + " procedure = " + traitement.getProcedure() + " hospitalisation = " + traitement.getHospitalisation() + " WHERE idTraitement = " + traitement.getIdTraitement());
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException, ParseException{

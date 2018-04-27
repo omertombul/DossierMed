@@ -21,10 +21,14 @@ public class ControleurTraitement {
     DB db = new DB();
     Builder builderTraitement = new Traitement.Builder();
     
-    public void sauvegarderTraitement(String medicament, String procedure, int hospitalisation) throws SQLException{
-       
+    public void setIdTraitement()  throws SQLException{
         int idTraitement = db.getLastId("Traitement", "idTraitement") + 1;
         builderTraitement.setIdTraitement(idTraitement);
+        db.creerTraitement(idTraitement);
+    }
+    
+    public void sauvegarderTraitement(String medicament, String procedure, int hospitalisation) throws SQLException{
+       
         
         builderTraitement.setMedicament(medicament);
         builderTraitement.setProcedure(procedure);
