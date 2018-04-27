@@ -5,6 +5,7 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import com.inf600c.dossiermedical.application.ControleurTraitement;
 import com.inf600c.dossiermedical.domaine.Traitement;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ public class FormulaireTraitement extends javax.swing.JFrame {
 
     Traitement traitement;
     DB db;
+    ControleurTraitement controleurTraitement = new ControleurTraitement(); 
     /**
      * Creates new form FormulaireTraitement
      */
@@ -130,9 +132,8 @@ public class FormulaireTraitement extends javax.swing.JFrame {
     Boolean hospitalisation = false;
     
     private void jButtonSomettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSomettreActionPerformed
-        ajouterTraitement();
         try {
-            db.sauvegarderTraitement(traitement);
+            ajouterTraitement();
         } catch (SQLException ex) {
             Logger.getLogger(FormulaireTraitement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -142,17 +143,19 @@ public class FormulaireTraitement extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxHospitalisationActionPerformed
 
-    private void ajouterTraitement(){
+    private void ajouterTraitement() throws SQLException{
         if(jCheckBoxHospitalisation.isSelected())
             traitement.setHospitalisation(1);
        
         String procedure = jTextFieldProcedure.getText() == null ? "" : jTextFieldProcedure.getText();
-        if(procedure != "")
+        if(!procedure.equals(""))
             traitement.setProcedure(procedure);
         
         String medicament = jTextFieldMedicament.getText() == null ? "" : jTextFieldMedicament.getText();
-        if(medicament != "")
+        if(!medicament.equals(""))
             traitement.setMedicament(medicament);
+        
+        controleurTraitement.sauvegarderTraitement(traitement);
     }
     
     /**
