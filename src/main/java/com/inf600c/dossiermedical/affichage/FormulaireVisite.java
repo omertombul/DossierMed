@@ -145,7 +145,11 @@ public class FormulaireVisite extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormulaireTraitement().setVisible(true);
+                try {
+                    new FormulaireTraitement().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormulaireVisite.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }//GEN-LAST:event_ajouterTraitementButtonActionPerformed
