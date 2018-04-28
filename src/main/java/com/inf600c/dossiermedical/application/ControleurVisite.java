@@ -25,6 +25,12 @@ public class ControleurVisite {
     DB db = new DB();
     Builder builderVisite = new Visite.Builder();
     
+    public void setIdVisite()  throws SQLException{
+        int idVisite = db.getLastId("Visite", "idVisite") + 1;
+        builderVisite.setIdVisite(idVisite);
+        db.creerVisite(idVisite);
+    }
+    
     public void ajouterMedecinDansVisite(int codeEmploye) throws SQLException{
         String specialite = db.getspecialteMedecin(codeEmploye, "specialite", "codeEmploye", "Medecin");
         builderVisite.setMedecin(new Medecin(codeEmploye, specialite));
@@ -35,12 +41,12 @@ public class ControleurVisite {
         builderVisite.setPatient(patient);
     }
     
+    public void ajouterDiagnostique(String diagnostique) throws SQLException, ParseException{
+//        builderVisite.setDiagnostique(diagnostique);
+    }
     
     public void sauvegarderVisite() throws SQLException, ParseException{
         
-        int idVisite = db.getLastId("Visite", "idVisite") + 1;
-        
-        builderVisite.setIdVisite(idVisite);
         builderVisite.setDateVisite(DateVisite.dateDAujourdhui());
         ajouterMedecinDansVisite(Dossier.codeEmploye);
         ajouterPatientDansVisite(Dossier.numAssMaladie);
@@ -56,6 +62,14 @@ public class ControleurVisite {
     
     public void ajouterEtablissement(String nomEtablissement){
         builderVisite.setNomEtablissement(nomEtablissement);
+    }
+    
+    public boolean validerChamps(){
+        
+        if(builderVisite.getDiagnostique().equals("") && builderVisite.getNote().equals("") && builderVisite.getNomEtablissement().equals(""))
+            return false;
+        
+        return true;
     }
     
 }

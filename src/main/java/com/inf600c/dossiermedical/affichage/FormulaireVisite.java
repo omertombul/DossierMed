@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,8 +23,9 @@ public class FormulaireVisite extends javax.swing.JFrame {
     /**
      * Creates new form Visite
      */
-    public FormulaireVisite() {
+    public FormulaireVisite() throws SQLException {
         initComponents();
+        controleurVisite.setIdVisite();
     }
 
     /**
@@ -39,7 +41,6 @@ public class FormulaireVisite extends javax.swing.JFrame {
         noteLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ajouterVisitejButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         diagnostiquejTextField = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -48,6 +49,11 @@ public class FormulaireVisite extends javax.swing.JFrame {
         notejTextField = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         ajouterTraitementButton.setText("Traitement");
         ajouterTraitementButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,13 +67,6 @@ public class FormulaireVisite extends javax.swing.JFrame {
         jLabel1.setText("Diagnostique");
 
         jLabel2.setText("Etablissement");
-
-        ajouterVisitejButton.setText("Ajouter");
-        ajouterVisitejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajouterVisitejButtonActionPerformed(evt);
-            }
-        });
 
         diagnostiquejTextField.setColumns(20);
         diagnostiquejTextField.setRows(5);
@@ -89,50 +88,46 @@ public class FormulaireVisite extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(noteLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 513, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ajouterVisitejButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ajouterTraitementButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(67, 67, 67))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(noteLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ajouterTraitementButton)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(noteLabel))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(ajouterTraitementButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(noteLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ajouterVisitejButton)
-                        .addGap(47, 47, 47))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ajouterTraitementButton))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,7 +146,7 @@ public class FormulaireVisite extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_ajouterTraitementButtonActionPerformed
 
-    private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         try {
             ajouterVisite();
         } catch (SQLException ex) {
@@ -159,24 +154,28 @@ public class FormulaireVisite extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(FormulaireVisite.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
+    }//GEN-LAST:event_formWindowClosed
 
     private void ajouterVisite() throws SQLException, ParseException{
         String note = notejTextField.getText() == null ? "" : notejTextField.getText();
         if(!note.equals(""))
             controleurVisite.ajouterNote(note);
         
+        String diagnostique = diagnostiquejTextField.getText() == null ? "" : diagnostiquejTextField.getText();
+        if(!diagnostique.equals(""))
+            controleurVisite.ajouterDiagnostique(diagnostique);
+        
         String nomEtablissement = etablissementjTextField.getText() == null ? "" : etablissementjTextField.getText();
         if(!nomEtablissement.equals(""))
             controleurVisite.ajouterEtablissement(nomEtablissement);
         
-        controleurVisite.sauvegarderVisite();
+            controleurVisite.sauvegarderVisite();
+        
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajouterTraitementButton;
-    private javax.swing.JButton ajouterVisitejButton;
     private javax.swing.JTextArea diagnostiquejTextField;
     private javax.swing.JTextArea etablissementjTextField;
     private javax.swing.JLabel jLabel1;

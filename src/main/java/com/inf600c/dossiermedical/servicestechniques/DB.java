@@ -8,20 +8,13 @@ package com.inf600c.dossiermedical.servicestechniques;
 //import static application.main.conn;
 import com.inf600c.dossiermedical.domaine.Patient;
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.inf600c.dossiermedical.domaine.Traitement;
 import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.fondation.SqlConnection;
-import java.awt.List;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-
 /**
  *
  * @author Lado
@@ -30,7 +23,6 @@ public class DB {
     
     
     CreationTables CreationTables = new CreationTables();
-    //SqlConnection sqlConn = new SqlConnection();
     SqlConnection sq = SqlConnection.getConnection();
     
     // creer novelle ligne avec idTraitemnt dans la table Traitement. 
@@ -46,16 +38,28 @@ public class DB {
  //       readSQLData();
 
         Statement statement = sq.conn.createStatement();
-        statement.executeUpdate("UPDATE Traitement SET medicament = " + traitement.getMedicament() + " procedure = " + traitement.getProcedure() + " hospitalisation = " + traitement.getHospitalisation() + " WHERE idTraitement = " + traitement.getIdTraitement());
+        statement.executeUpdate("UPDATE Traitement SET medicament = '" + traitement.getMedicament() + 
+                                                    "', procedure = '" + traitement.getProcedure() + 
+                                                    "', hospitalisation = '" + traitement.getHospitalisation() + 
+                                                    "' WHERE idTraitement = " + traitement.getIdTraitement());
+    }
+    
+    public void creerVisite(int idVisite) throws SQLException{
+        CreationTables.createTableVisite(sq.conn);
+        Statement statement = sq.conn.createStatement();
+        statement.executeUpdate("INSERT INTO Visite VALUES (" + idVisite + ",0 , 0 , '', '','')");
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException, ParseException{
 
-        CreationTables.createTableVisite(sq.conn);
-        
         Statement statement = sq.conn.createStatement();
         
-        statement.executeUpdate("INSERT INTO Visite VALUES (" + visite.getIdVisite() + ", " + visite.getMedecin().getCodeEmployeMedecin() + ", '" + visite.getPatient().getNumAssMaladie() + "', '" + visite.getNomEtablissement() + "', " + visite.getDateVisite() + ")");
+        statement.executeUpdate("UPDATE Visite SET codeEmploye = " + visite.getMedecin().getCodeEmployeMedecin() + 
+                                                ", numAssMaladie = " + visite.getPatient().getNumAssMaladie() + 
+                                                ", nomEtablissement = '" + visite.getNomEtablissement() + 
+                                                "', dateVisite = '" + visite.getDateVisite() + 
+                                                "', note = '" + visite.getNote() +  
+                                                "' WHERE idVisite = " + visite.getIdVisite());
     
     }
     
@@ -79,7 +83,6 @@ public class DB {
     }
     
     public void readSQLData() throws SQLException{
-        
         
         Statement statement;
         statement = sq.conn.createStatement();
