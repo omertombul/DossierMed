@@ -30,7 +30,7 @@ public class DB {
     public void creerTableTraitement(){
         try {
             statement = sq.conn.createStatement();
-            CreationTables.createTableTraitement(sq.conn);
+//            CreationTables.createTableTraitement(sq.conn);
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,7 +66,7 @@ public class DB {
     public void creerTableVisite(){
         try {
             statement = sq.conn.createStatement();
-            CreationTables.createTableVisite(sq.conn);
+//            CreationTables.createTableVisite(sq.conn);
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +102,7 @@ public class DB {
     
     public void creerDiagnostique(int idVisite, String textDiagnostique){
         try {
-            CreationTables.createTableDiagnostique(sq.conn);
+//            CreationTables.createTableDiagnostique(sq.conn);
             statement = sq.conn.createStatement();
         
             boolean idVisiteExiste = validerIfExiste(idVisite, "idVisite", "Diagnostique");

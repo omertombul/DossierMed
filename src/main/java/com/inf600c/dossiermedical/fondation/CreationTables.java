@@ -17,7 +17,7 @@ public class CreationTables {
     
     SqlConnection sq = SqlConnection.getConnection();
     Statement statement;
-    
+/*    
     public void createTableVisite(Connection conn) throws SQLException {
         String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Visite"
                 + "  (idVisite          INTEGER,"
@@ -51,7 +51,7 @@ public class CreationTables {
         statement = conn.createStatement();
         statement.execute(sqlCreateTable);
     }
-    
+*/    
     public void createSystemTables() throws SQLException{
         
         statement = sq.conn.createStatement();
@@ -94,6 +94,31 @@ public class CreationTables {
         
         statement.execute(sqlCreateTablePersonnel);
         
+        String sqlCreateTableVisite = "CREATE TABLE IF NOT EXISTS Visite"
+                + "  (idVisite          INTEGER,"
+                + "   codeEmploye       INTEGER,"
+                + "   numAssMaladie     INTEGER,"
+                + "   nomEtablissement  VARCHAR(50),"
+                + "   dateVisite        VARCHAR(10),"
+                + "   note              VARCHAR(256))";
+        
+        statement.execute(sqlCreateTableVisite);
+        
+        String sqlCreateTableTraitement = "CREATE TABLE IF NOT EXISTS Traitement"
+                + "  (idTraitement      INTEGER,"
+                + "   idVisite          INTEGER,"
+                + "   medicament        VARCHAR(50),"
+                + "   procedure         VARCHAR(50),"
+                + "   hospitalisation   INTEGER)";
+
+        statement.execute(sqlCreateTableTraitement);
+
+        String sqlCreateTableDiagnostique = "CREATE TABLE IF NOT EXISTS Diagnostique"
+                + "  (idVisite          INTEGER  ,"
+                + "   diagnostique      VARCHAR(256))";
+        
+        statement.execute(sqlCreateTableDiagnostique);
+        
         fillOutTablesData();
     }
     
@@ -118,7 +143,20 @@ public class CreationTables {
         statement.executeUpdate("INSERT INTO Personnel VALUES (777000777, 100200300)");
         statement.executeUpdate("INSERT INTO Personnel VALUES (999666111, 444555666)");
 
+        statement.executeUpdate("INSERT INTO Visite VALUES (1, 777000777, 911911911, 'Bordele', '20-04-2018', 'Excellent')");
+        statement.executeUpdate("INSERT INTO Visite VALUES (2, 111888999, 911911911, 'Hopitale', '21-04-2018', 'Malade')");
+        statement.executeUpdate("INSERT INTO Visite VALUES (3, 777000777, 777777777, 'Maison', '20-04-2018', 'Content')");
+        statement.executeUpdate("INSERT INTO Visite VALUES (4, 111888999, 777777777, 'Hopitale', '21-04-2018', 'Fache')");
+
+        statement.executeUpdate("INSERT INTO Traitement VALUES (1,1, 'Huile', 'Massage', 0)");
+        statement.executeUpdate("INSERT INTO Traitement VALUES (2,2, 'Tylenole', 'Boire tylenole', 1)");
+        statement.executeUpdate("INSERT INTO Traitement VALUES (3,3, 'Vallium', 'Boire vallium', 1)");
+        statement.executeUpdate("INSERT INTO Traitement VALUES (4,4, 'Morfine', 'Rein faire', 1)");
         
-        
+        statement.executeUpdate("INSERT INTO Diagnostique VALUES (1, 'Malade mentale')");
+        statement.executeUpdate("INSERT INTO Diagnostique VALUES (2, 'Toujour fatigue')");
+        statement.executeUpdate("INSERT INTO Diagnostique VALUES (3, 'Idiot anormal')");
+        statement.executeUpdate("INSERT INTO Diagnostique VALUES (4, 'Mal au pied')");
+
     }
 }

@@ -10,6 +10,7 @@ import com.inf600c.dossiermedical.domaine.Dossier;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +25,9 @@ public class FormulaireDossier extends javax.swing.JFrame {
     public FormulaireDossier() {
         initComponents();
         instance = this;
-//        ControleurDossier.creationDeTablesSysteme();
+        ControleurDossier.creationDeTablesSysteme();
+
+        remplirListeVisites();
     }
       /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +50,11 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         entrerButton.setText("Entrer");
         entrerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,8 +70,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
         visitesjLabel.setText("Visites");
         visitesjLabel.setEnabled(false);
 
-        listeVisitesjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         listeVisitesjComboBox.setEnabled(false);
+        listeVisitesjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listeVisitesjComboBoxActionPerformed(evt);
+            }
+        });
 
         ouvrirAntecedentsjButton.setText("Ouvrir Antecedents");
         ouvrirAntecedentsjButton.setEnabled(false);
@@ -185,9 +197,34 @@ public class FormulaireDossier extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
 
+    private void remplirListeVisites(){
+        String[] patternExamples = {
+         "Visite 1",
+         "Visite 3",
+         "Visite 3"};
+
+        listeVisitesjComboBox.addItem("Visite 1");
+        listeVisitesjComboBox.addItem("Visite 2");
+        listeVisitesjComboBox.addItem("Visite 3");
+//        JComboBox patternList = new JComboBox(patternExamples);
+//        patternList.setEditable(true);
+//        patternList.addActionListener(this);
+        
+        
+    
+    }
+    
     private void codeEmployejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeEmployejTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codeEmployejTextFieldActionPerformed
+
+    private void listeVisitesjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listeVisitesjComboBoxActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        listeVisitesjComboBox.removeAllItems();
+    }//GEN-LAST:event_formWindowClosing
 
     
     
