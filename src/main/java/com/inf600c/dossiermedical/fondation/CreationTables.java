@@ -84,6 +84,16 @@ public class CreationTables {
         
         statement.execute(sqlCreateTablePersonnel);
         
+        String sqlCreateTableAntecedent = "CREATE TABLE IF NOT EXISTS Antecedent"
+                                + "  (numAssMaladie INTEGER,"
+                                + "  diagnostique VARCHAR(256),"
+                                + "  procedure VARCHAR(256),"
+                                + "  nomMedecin VARCHAR(50),"
+                                + "  dateDebutTraitement VARCHAR(10)," 
+                                + "  dateFinTraitement VARCHAR(10))";
+        
+        statement.execute(sqlCreateTablePersonnel);
+        
         fillOutTablesData();
     }
     

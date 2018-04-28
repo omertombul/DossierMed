@@ -40,7 +40,11 @@ public class DB {
     public void creerTraitement(int idTraitement){
         try {
             statement = sq.conn.createStatement();
-            statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '', '', " + 0 + ")");
+            
+            boolean idTraitementExiste = validerIfExiste(idTraitement, "idTraitement", "Traitement");
+
+            if(!idTraitementExiste)
+                statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '', '', " + 0 + ")");
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,8 +53,6 @@ public class DB {
     public void sauvegarderTraitement(Traitement traitement){
    
         try {
-            //       readSQLData();
-
             statement = sq.conn.createStatement();
             statement.executeUpdate("UPDATE Traitement SET medicament = '" + traitement.getMedicament() + 
                                                     "', procedure = '" + traitement.getProcedure() + 
@@ -73,7 +75,11 @@ public class DB {
     public void creerVisite(int idVisite){
         try {
             statement = sq.conn.createStatement();
-            statement.executeUpdate("INSERT INTO Visite VALUES (" + idVisite + ",0 , 0 , '', '','')");
+            
+            boolean idVisiteExiste = validerIfExiste(idVisite, "idVisite", "Visite");
+
+            if(!idVisiteExiste)
+                statement.executeUpdate("INSERT INTO Visite VALUES (" + idVisite + ",0 , 0 , '', '','')");
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
