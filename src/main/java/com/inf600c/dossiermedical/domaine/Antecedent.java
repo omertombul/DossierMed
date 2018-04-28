@@ -11,16 +11,31 @@ import java.sql.Date;
  *
  * @author Lado
  */
-public class Antecedent {
+public class Antecedent implements Command {
     
     private String descriptionDiagnostique;
+    private String oldDescriptionDiagnostique;
+    private String newDescriptionDiagnostique;
     private String descriptionTraitement;
+    private String oldDescriptionTraitement;
+    private String newDescriptionTraitement;
     private Medecin medecin;
     private Date dateDebutTraitement;
     private Date dateFinTraitement;
+    private boolean estExecutee = false;
     
     
-
+    public Antecedent(){
+    }
+    
+    public Antecedent(String nouveauDiagnostique, String nouveauTraitement){
+       
+        this.descriptionDiagnostique = nouveauDiagnostique;
+        newDescriptionDiagnostique = nouveauDiagnostique;
+        this.descriptionTraitement = nouveauTraitement;
+        newDescriptionTraitement = nouveauTraitement;
+    }
+            
     public String getDescriptionDiagnostique() {
         return descriptionDiagnostique;
     }
@@ -59,6 +74,26 @@ public class Antecedent {
 
     public void setDateFinTraitement(Date dateFinTraitement) {
         this.dateFinTraitement = dateFinTraitement;
+    }
+
+   
+    @Override
+    public void executerCommand() {
+        oldDescriptionDiagnostique = getDescriptionDiagnostique();
+        setDescriptionDiagnostique(newDescriptionDiagnostique);
+        oldDescriptionTraitement = getDescriptionTraitement();
+        setDescriptionTraitement(newDescriptionTraitement);
+        
+        estExecutee = true;
+        
+    }
+
+    @Override
+    public void annulerCommande() {
+        if(estExecutee){           
+            setDescriptionDiagnostique(oldDescriptionDiagnostique);
+            setDescriptionTraitement(oldDescriptionTraitement);
+        }
     }
     
 }
