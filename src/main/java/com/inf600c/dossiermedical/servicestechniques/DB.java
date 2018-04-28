@@ -21,23 +21,22 @@ import java.text.ParseException;
  */
 public class DB {
     
-    
     CreationTables CreationTables = new CreationTables();
     SqlConnection sq = SqlConnection.getConnection();
+    Statement statement;
     
     // creer novelle ligne avec idTraitemnt dans la table Traitement. 
     public void creerTraitement(int idTraitement) throws SQLException{
         CreationTables.createTableTraitement(sq.conn);
-        Statement statement = sq.conn.createStatement();
+        statement = sq.conn.createStatement();
         statement.executeUpdate("INSERT INTO Traitement VALUES (" + idTraitement + ", " + 0 + ", '', '', " + 0 + ")");
     }
-            
             
     public void sauvegarderTraitement(Traitement traitement) throws SQLException{
    
  //       readSQLData();
 
-        Statement statement = sq.conn.createStatement();
+        statement = sq.conn.createStatement();
         statement.executeUpdate("UPDATE Traitement SET medicament = '" + traitement.getMedicament() + 
                                                     "', procedure = '" + traitement.getProcedure() + 
                                                     "', hospitalisation = '" + traitement.getHospitalisation() + 
@@ -46,13 +45,13 @@ public class DB {
     
     public void creerVisite(int idVisite) throws SQLException{
         CreationTables.createTableVisite(sq.conn);
-        Statement statement = sq.conn.createStatement();
+        statement = sq.conn.createStatement();
         statement.executeUpdate("INSERT INTO Visite VALUES (" + idVisite + ",0 , 0 , '', '','')");
     }
     
     public void sauvegarderVisite(Visite visite) throws SQLException, ParseException{
 
-        Statement statement = sq.conn.createStatement();
+        statement = sq.conn.createStatement();
         
         statement.executeUpdate("UPDATE Visite SET codeEmploye = " + visite.getMedecin().getCodeEmployeMedecin() + 
                                                 ", numAssMaladie = " + visite.getPatient().getNumAssMaladie() + 
@@ -69,7 +68,6 @@ public class DB {
         
         int id=0;
         
-        Statement statement;
         statement = sq.conn.createStatement();
         
         ResultSet rs;
@@ -84,9 +82,7 @@ public class DB {
     
     public void readSQLData() throws SQLException{
         
-        Statement statement;
         statement = sq.conn.createStatement();
-        
         
         ResultSet rs;
         rs = statement.executeQuery("SELECT textProcedure FROM Procedure ");
@@ -106,7 +102,6 @@ public class DB {
     
     public boolean validerNumAssMaladie(int numAssMaladie) throws SQLException{
         
-        Statement statement;
         statement = sq.conn.createStatement();
         
         ResultSet rs;
@@ -124,7 +119,6 @@ public class DB {
     
     public boolean validerIfExiste(int nombre, String nomColonne, String nomTable) throws SQLException{
        
-        Statement statement;
         statement = sq.conn.createStatement();
         
         ResultSet rs;
@@ -142,7 +136,6 @@ public class DB {
     
     public String getspecialteMedecin(int nombre, String nomColResultat, String nomColonne, String nomTable) throws SQLException{
         
-        Statement statement;
         statement = sq.conn.createStatement();
         
         ResultSet rs;
@@ -162,7 +155,6 @@ public class DB {
         
         Patient patient = new Patient();
         
-        Statement statement;
         statement = sq.conn.createStatement();
         
         ResultSet rs;

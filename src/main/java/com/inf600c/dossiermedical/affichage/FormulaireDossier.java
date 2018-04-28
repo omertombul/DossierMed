@@ -174,8 +174,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                new FormulaireVisite().setVisible(true);
-            //    instance.dispose();
+                try {
+                    new FormulaireVisite().setVisible(true);
+                    //    instance.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormulaireDossier.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
