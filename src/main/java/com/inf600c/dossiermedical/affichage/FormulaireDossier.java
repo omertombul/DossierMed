@@ -7,7 +7,9 @@ package com.inf600c.dossiermedical.affichage;
 
 import com.inf600c.dossiermedical.application.ControleurDossier;
 import com.inf600c.dossiermedical.domaine.Dossier;
+import java.awt.List;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -20,14 +22,13 @@ import javax.swing.JOptionPane;
 public class FormulaireDossier extends javax.swing.JFrame {
 
     public FormulaireDossier instance; 
-    ControleurDossier ControleurDossier = new ControleurDossier();
+    ControleurDossier controleurDossier = new ControleurDossier();
     
     public FormulaireDossier() {
         initComponents();
         instance = this;
-//        ControleurDossier.creationDeTablesSysteme();
+//        controleurDossier.creationDeTablesSysteme();
 
-        remplirListeVisites();
     }
       /**
      * This method is called from within the constructor to initialize the form.
@@ -173,11 +174,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 Logger.getLogger(FormulaireDossier.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (accesValide){    
-            //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
-            ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
-            listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
-            visitesjLabel.setEnabled(rootPaneCheckingEnabled);
-            ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
+                remplirListeVisites();
+                //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
+                ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
+                listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
+                visitesjLabel.setEnabled(rootPaneCheckingEnabled);
+                ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
             }
         }
     
@@ -198,14 +200,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
     }//GEN-LAST:event_ajouterVisitejButtonActionPerformed
 
     private void remplirListeVisites(){
-        String[] patternExamples = {
-         "Visite 1",
-         "Visite 3",
-         "Visite 3"};
-
-        listeVisitesjComboBox.addItem("Visite 1");
-        listeVisitesjComboBox.addItem("Visite 2");
-        listeVisitesjComboBox.addItem("Visite 3");
+        ArrayList listeVisites = controleurDossier.trouverVisitesPatient();
+        
+        listeVisites.forEach(item->listeVisitesjComboBox.addItem((String)item));
+        
+        
+        
 //        JComboBox patternList = new JComboBox(patternExamples);
 //        patternList.setEditable(true);
 //        patternList.addActionListener(this);

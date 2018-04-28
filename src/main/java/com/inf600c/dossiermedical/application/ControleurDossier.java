@@ -5,8 +5,12 @@
  */
 package com.inf600c.dossiermedical.application;
 
+import com.inf600c.dossiermedical.domaine.Dossier;
 import com.inf600c.dossiermedical.fondation.CreationTables;
+import com.inf600c.dossiermedical.servicestechniques.DB;
+import java.awt.List;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +21,7 @@ import java.util.logging.Logger;
 public class ControleurDossier {
     
     CreationTables CreationTables = new CreationTables();
+    DB db = new DB();
     
     public void creationDeTablesSysteme(){
         try {
@@ -26,6 +31,8 @@ public class ControleurDossier {
         }
     }
     
-    
+    public ArrayList trouverVisitesPatient(){
+        return db.trouverListeVisites(Dossier.numAssMaladie);
+    }
         
 }

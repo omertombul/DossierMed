@@ -14,7 +14,9 @@ import com.inf600c.dossiermedical.domaine.Traitement;
 import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.fondation.SqlConnection;
+import java.awt.List;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -254,6 +256,26 @@ public class DB {
         
         return patient;
     }
+    
+    public ArrayList trouverListeVisites(int numAssMaladie){
+        ArrayList listeVisites = new ArrayList();
+
+        try {
+            statement = sq.conn.createStatement();
+            ResultSet rs;
+            rs = statement.executeQuery("SELECT dateVisite FROM Visite WHERE numAssMaladie = " + numAssMaladie);
+        
+            while(rs.next()) {
+                Object objectDateVisite = rs.getObject(1);
+                listeVisites.add((String)objectDateVisite);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return listeVisites;
+    }
+    
 /*    
     public boolean idExiste(String table, String columnName, int id) throws SQLException{
         statement = sq.conn.createStatement();

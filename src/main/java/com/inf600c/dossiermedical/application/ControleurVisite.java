@@ -13,10 +13,8 @@ import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.domaine.Visite.Builder;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.servicestechniques.DateVisite;
-import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
