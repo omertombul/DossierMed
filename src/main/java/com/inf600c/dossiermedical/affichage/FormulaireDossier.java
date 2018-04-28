@@ -72,9 +72,9 @@ public class FormulaireDossier extends javax.swing.JFrame {
         visitesjLabel.setEnabled(false);
 
         listeVisitesjComboBox.setEnabled(false);
-        listeVisitesjComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listeVisitesjComboBoxActionPerformed(evt);
+        listeVisitesjComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listeVisitesjComboBoxKeyPressed(evt);
             }
         });
 
@@ -86,12 +86,6 @@ public class FormulaireDossier extends javax.swing.JFrame {
         ajouterVisitejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ajouterVisitejButtonActionPerformed(evt);
-            }
-        });
-
-        codeEmployejTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codeEmployejTextFieldActionPerformed(evt);
             }
         });
 
@@ -203,29 +197,20 @@ public class FormulaireDossier extends javax.swing.JFrame {
         ArrayList listeVisites = controleurDossier.trouverVisitesPatient();
         
         listeVisites.forEach(item->listeVisitesjComboBox.addItem((String)item));
-        
-        
-        
-//        JComboBox patternList = new JComboBox(patternExamples);
-//        patternList.setEditable(true);
-//        patternList.addActionListener(this);
-        
-        
+ //       listeVisitesjComboBox.addActionListener(listeVisitesjComboBox);
     
     }
     
-    private void codeEmployejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeEmployejTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codeEmployejTextFieldActionPerformed
-
-    private void listeVisitesjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listeVisitesjComboBoxActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         listeVisitesjComboBox.removeAllItems();
     }//GEN-LAST:event_formWindowClosing
 
+    private void listeVisitesjComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxKeyPressed
+         JOptionPane.showMessageDialog(null, 
+                                  "Yes!", 
+                                  "WARNING", 
+                                  JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
     
     
 
