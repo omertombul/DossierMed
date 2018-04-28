@@ -206,10 +206,10 @@ public class FormulaireDossier extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void listeVisitesjComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxKeyPressed
-         JOptionPane.showMessageDialog(null, 
-                                  "Yes!", 
-                                  "WARNING", 
-                                  JOptionPane.WARNING_MESSAGE);
+        new AffichageVisite().setVisible(true); 
+        String dateVisite = listeVisitesjComboBox.getSelectedItem().toString();
+        
+        // ControleurDossier.getVisiteAttributes();
     }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
     
     
