@@ -12,73 +12,139 @@ import java.util.Date;
  */
 public class Visite {
     
-    private int numAssMaladie;
-    private int idVisite;
-    private Medecin medecin;
-    private Patient patient;
-    private String nomEtablissement;
-    private String note;
-//    private String diagnostique;
-    private String dateVisite;
+    private final int numAssMaladie;
+    private final int idVisite;
+    private final Medecin medecin;
+    private final Patient patient;
+    private final String nomEtablissement;
+    private final String note;
+    private final Diagnostique diagnostique;
+    private final String dateVisite;
+    
+    private Visite(Builder builder) {
+        this.numAssMaladie = builder.numAssMaladie;
+        this.idVisite = builder.idVisite;
+        this.medecin = builder.medecin;
+        this.patient = builder.patient;
+        this.nomEtablissement = builder.nomEtablissement;
+        this.note = builder.note;
+        this.diagnostique = builder.diagnostique;
+        this.dateVisite = builder.dateVisite;
+    }
+    
+    public static class Builder{
+        
+        private int numAssMaladie;
+        private int idVisite;
+        private Medecin medecin;
+        private Patient patient;
+        private String nomEtablissement;
+        private String note;
+        private Diagnostique diagnostique;
+        private String dateVisite;
+        
+        public Builder() {}
 
+        public int getNumAssMaladie() {
+            return numAssMaladie;
+        }
+
+        public void setNumAssMaladie(int numAssMaladie) {
+            this.numAssMaladie = numAssMaladie;
+        }
+
+        public int getIdVisite() {
+            return idVisite;
+        }
+
+        public void setIdVisite(int idVisite) {
+            this.idVisite = idVisite;
+        }
+
+        public Medecin getMedecin() {
+            return medecin;
+        }
+
+        public void setMedecin(Medecin medecin) {
+            this.medecin = medecin;
+        }
+
+        public Patient getPatient() {
+            return patient;
+        }
+
+        public void setPatient(Patient patient) {
+            this.patient = patient;
+        }
+
+        public String getNomEtablissement() {
+            return nomEtablissement;
+        }
+
+        public void setNomEtablissement(String nomEtablissement) {
+            this.nomEtablissement = nomEtablissement;
+        }
+
+        public String getNote() {
+            return note;
+        }
+
+        public void setNote(String note) {
+            this.note = note;
+        }
+
+        public Diagnostique getDiagnostique() {
+            return diagnostique;
+        }
+
+        public void setDiagnostique(Diagnostique diagnostique) {
+            this.diagnostique = diagnostique;
+        }
+
+        public String getDateVisite() {
+            return dateVisite;
+        }
+
+        public void setDateVisite(String dateVisite) {
+            this.dateVisite = dateVisite;
+        }
+        
+        public Visite construireVisite() {
+            return new Visite(this);
+        }
+    } //Builder
+    
     public int getIdVisite() {
         return idVisite;
-    }
-
-    public void setIdVisite(int idVisite) {
-        this.idVisite = idVisite;
     }
 
     public Medecin getMedecin() {
         return medecin;
     }
 
-    public void setMedecin(Medecin medecin) {
-        this.medecin = medecin;
-    }
-
     public Patient getPatient() {
         return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
     }
 
     public String getNomEtablissement() {
         return nomEtablissement;
     }
 
-    public void setNomEtablissement(String nomEtablissement) {
-        this.nomEtablissement = nomEtablissement;
-    }
-
     public String getDateVisite() {
         return dateVisite;
     }
 
-    public void setDateVisite(String dateVisite) {
-        this.dateVisite = dateVisite;
-    }
 
     public int getNumAssMaladie() {
         return numAssMaladie;
-    }
-
-    public void setNumAssMaladie(int numAssMaladie) {
-        this.numAssMaladie = numAssMaladie;
     }
 
     public String getNote() {
         return note;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public Diagnostique getDiagnostique() {
+        return diagnostique;
     }
-    
-    
-    
-    
-    
+   
 }

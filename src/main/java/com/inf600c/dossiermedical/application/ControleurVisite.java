@@ -9,9 +9,9 @@ import com.inf600c.dossiermedical.domaine.Dossier;
 import com.inf600c.dossiermedical.domaine.Medecin;
 import com.inf600c.dossiermedical.domaine.Patient;
 import com.inf600c.dossiermedical.domaine.Visite;
+import com.inf600c.dossiermedical.domaine.Visite.Builder;
 import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.servicestechniques.DateVisite;
-import java.awt.List;
 import java.sql.SQLException;
 import java.text.ParseException;
 
@@ -21,17 +21,18 @@ import java.text.ParseException;
  * @author Lado
  */
 public class ControleurVisite {
+    
     DB db = new DB();
-    Visite visite = new Visite();
+    Builder builderVisite = new Visite.Builder();
     
     public void ajouterMedecinDansVisite(int codeEmploye) throws SQLException{
         String specialite = db.getspecialteMedecin(codeEmploye, "specialite", "codeEmploye", "Medecin");
-        visite.setMedecin(new Medecin(codeEmploye, specialite));
+        builderVisite.setMedecin(new Medecin(codeEmploye, specialite));
     }
     
     public void ajouterPatientDansVisite(int numAssMaladie) throws SQLException, ParseException{
         Patient patient = db.getParametresPatient(numAssMaladie);
-        visite.setPatient(patient);
+        builderVisite.setPatient(patient);
     }
     
     
@@ -39,20 +40,22 @@ public class ControleurVisite {
         
         int idVisite = db.getLastId("Visite", "idVisite") + 1;
         
-        visite.setIdVisite(idVisite);
-        visite.setDateVisite(DateVisite.dateDAujourdhui());
+        builderVisite.setIdVisite(idVisite);
+        builderVisite.setDateVisite(DateVisite.dateDAujourdhui());
         ajouterMedecinDansVisite(Dossier.codeEmploye);
         ajouterPatientDansVisite(Dossier.numAssMaladie);
+        
+        Visite visite = builderVisite.construireVisite();
         
         db.sauvegarderVisite(visite);
     }
 
     public void ajouterNote(String note){
-        visite.setNote(note);
+        builderVisite.setNote(note);
     }
     
     public void ajouterEtablissement(String nomEtablissement){
-        visite.setNomEtablissement(nomEtablissement);
+        builderVisite.setNomEtablissement(nomEtablissement);
     }
     
 }

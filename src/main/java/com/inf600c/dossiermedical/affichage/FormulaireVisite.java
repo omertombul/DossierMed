@@ -6,8 +6,6 @@
 package com.inf600c.dossiermedical.affichage;
 
 import com.inf600c.dossiermedical.application.ControleurVisite;
-import com.inf600c.dossiermedical.servicestechniques.DB;
-import com.inf600c.dossiermedical.domaine.Visite;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -19,7 +17,6 @@ import java.util.logging.Logger;
  */
 public class FormulaireVisite extends javax.swing.JFrame {
     
-    Visite visite = new Visite();
     ControleurVisite controleurVisite = new ControleurVisite(); 
 
     /**

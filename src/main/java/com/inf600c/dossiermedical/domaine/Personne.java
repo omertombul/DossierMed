@@ -15,7 +15,6 @@ public class Personne {
     
     private String nom;
     private String prenom;
-    private Date dateNaissanse;
 
     public String getNom() {
         return nom;
@@ -33,14 +32,4 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissanse() {
-        return dateNaissanse;
-    }
-
-    public void setDateNaissanse(Date dateNaissanse) {
-        this.dateNaissanse = dateNaissanse;
-    }
-    
-    
-    
 }

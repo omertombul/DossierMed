@@ -55,16 +55,9 @@ public class DB {
         
         Statement statement = sq.conn.createStatement();
         
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        Date parsed = format.parse(visite.getDateVisite());
-        java.sql.Date dateVisite = new java.sql.Date(parsed.getTime());
-        
         statement.executeUpdate("INSERT INTO Visite VALUES (" + visite.getIdVisite() + ", " + visite.getMedecin().getCodeEmployeMedecin() + ", '" + visite.getPatient().getNumAssMaladie() + "', '" + visite.getNomEtablissement() + "', " + visite.getDateVisite() + ")");
     
-        
     }
-    
-    
     
     public int getLastId(String tableName, String columnName) throws SQLException{
         
