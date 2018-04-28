@@ -5,6 +5,7 @@
  */
 package com.inf600c.dossiermedical.application;
 
+import com.inf600c.dossiermedical.domaine.Diagnostique;
 import com.inf600c.dossiermedical.domaine.Dossier;
 import com.inf600c.dossiermedical.domaine.Medecin;
 import com.inf600c.dossiermedical.domaine.Patient;
@@ -14,7 +15,8 @@ import com.inf600c.dossiermedical.servicestechniques.DB;
 import com.inf600c.dossiermedical.servicestechniques.DateVisite;
 import java.sql.SQLException;
 import java.text.ParseException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,28 +26,34 @@ public class ControleurVisite {
     
     DB db = new DB();
     Builder builderVisite = new Visite.Builder();
+    Diagnostique diagnostique = new Diagnostique();
     
-    public void setIdVisite()  throws SQLException{
-        int idVisite = db.getLastId("Visite", "idVisite") + 1;
-        builderVisite.setIdVisite(idVisite);
-        db.creerVisite(idVisite);
+    public void setIdVisite(){
+        int idVisite;
+            db.creerTableVisite();
+            idVisite = db.getLastId("Visite", "idVisite") + 1;
+            builderVisite.setIdVisite(idVisite);
+            db.creerVisite(idVisite);
+        
     }
     
-    public void ajouterMedecinDansVisite(int codeEmploye) throws SQLException{
+    public void ajouterMedecinDansVisite(int codeEmploye){
         String specialite = db.getspecialteMedecin(codeEmploye, "specialite", "codeEmploye", "Medecin");
         builderVisite.setMedecin(new Medecin(codeEmploye, specialite));
     }
     
-    public void ajouterPatientDansVisite(int numAssMaladie) throws SQLException, ParseException{
+    public void ajouterPatientDansVisite(int numAssMaladie) throws ParseException{
         Patient patient = db.getParametresPatient(numAssMaladie);
         builderVisite.setPatient(patient);
     }
     
-    public void ajouterDiagnostique(String diagnostique) throws SQLException, ParseException{
-//        builderVisite.setDiagnostique(diagnostique);
+    public void ajouterDiagnostique(String textDiagnostique) throws ParseException{
+        diagnostique.setDiagnostique(textDiagnostique);
+        db.creerDiagnostique(builderVisite.getIdVisite(), textDiagnostique);
+        builderVisite.setDiagnostique(diagnostique);
     }
     
-    public void sauvegarderVisite() throws SQLException, ParseException{
+    public void sauvegarderVisite() throws ParseException{
         
         builderVisite.setDateVisite(DateVisite.dateDAujourdhui());
         ajouterMedecinDansVisite(Dossier.codeEmploye);

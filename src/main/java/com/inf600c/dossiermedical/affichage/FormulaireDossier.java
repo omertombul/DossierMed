@@ -24,7 +24,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
     public FormulaireDossier() {
         initComponents();
         instance = this;
-        ControleurDossier.creationDeTablesSysteme();
+//        ControleurDossier.creationDeTablesSysteme();
     }
       /**
      * This method is called from within the constructor to initialize the form.
@@ -174,7 +174,6 @@ public class FormulaireDossier extends javax.swing.JFrame {
     private void ajouterVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterVisitejButtonActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
                 try {
                     new FormulaireVisite().setVisible(true);
                     //    instance.dispose();

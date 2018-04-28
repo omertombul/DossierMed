@@ -21,7 +21,8 @@ public class ControleurTraitement {
     DB db = new DB();
     Builder builderTraitement = new Traitement.Builder();
     
-    public void setIdTraitement()  throws SQLException{
+    public void setIdTraitement(){
+        db.creerTableTraitement();
         int idTraitement = db.getLastId("Traitement", "idTraitement") + 1;
         builderTraitement.setIdTraitement(idTraitement);
         db.creerTraitement(idTraitement);
@@ -29,7 +30,6 @@ public class ControleurTraitement {
     
     public void sauvegarderTraitement(String medicament, String procedure, int hospitalisation) throws SQLException{
        
-        
         builderTraitement.setMedicament(medicament);
         builderTraitement.setProcedure(procedure);
         builderTraitement.setHospitalisation(hospitalisation);

@@ -20,11 +20,12 @@ public class CreationTables {
     
     public void createTableVisite(Connection conn) throws SQLException {
         String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Visite"
-                + "  (idVisite          INTEGER  ,"
-                + "   idMedecin         INTEGER,"
-                + "   idPatient         INTEGER,"
+                + "  (idVisite          INTEGER,"
+                + "   codeEmploye       INTEGER,"
+                + "   numAssMaladie     INTEGER,"
                 + "   nomEtablissement  VARCHAR(50),"
-                + "   dateVisite        DATE)";
+                + "   dateVisite        VARCHAR(10),"
+                + "   note              VARCHAR(256))";
 
         statement = conn.createStatement();
         statement.execute(sqlCreateTable);
@@ -32,11 +33,20 @@ public class CreationTables {
     
     public void createTableTraitement(Connection conn) throws SQLException {
         String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Traitement"
-                + "  (idVisite          INTEGER  ,"
-                + "   idTraitement      INTEGER,"
+                + "  (idTraitement      INTEGER,"
+                + "   idVisite          INTEGER,"
                 + "   medicament        VARCHAR(50),"
                 + "   procedure         VARCHAR(50),"
                 + "   hospitalisation   INTEGER)";
+
+        statement = conn.createStatement();
+        statement.execute(sqlCreateTable);
+    }
+    
+    public void createTableDiagnostique(Connection conn) throws SQLException {
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Diagnostique"
+                + "  (idVisite          INTEGER  ,"
+                + "   diagnostique      VARCHAR(256))";
 
         statement = conn.createStatement();
         statement.execute(sqlCreateTable);

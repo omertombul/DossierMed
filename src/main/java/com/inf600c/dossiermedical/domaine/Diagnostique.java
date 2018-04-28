@@ -11,16 +11,7 @@ package com.inf600c.dossiermedical.domaine;
  */
 public class Diagnostique {
     
-    private int idDiagnostique;
     private String diagnostique;
-
-    public int getIdDiagnostique() {
-        return idDiagnostique;
-    }
-
-    public void setIdDiagnostique(int idDiagnostique) {
-        this.idDiagnostique = idDiagnostique;
-    }
 
     public String getDiagnostique() {
         return diagnostique;
