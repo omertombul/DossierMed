@@ -5,7 +5,7 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
-import com.inf600c.dossiermedical.servicestechniques.DB;
+import com.inf600c.dossiermedical.application.ControleurDossier;
 import com.inf600c.dossiermedical.domaine.Dossier;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,11 +19,12 @@ import javax.swing.JOptionPane;
 public class FormulaireDossier extends javax.swing.JFrame {
 
     public FormulaireDossier instance; 
+    ControleurDossier ControleurDossier = new ControleurDossier();
     
     public FormulaireDossier() {
         initComponents();
         instance = this;
-        
+        ControleurDossier.creationDeTablesSysteme();
     }
       /**
      * This method is called from within the constructor to initialize the form.
