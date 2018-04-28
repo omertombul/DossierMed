@@ -25,7 +25,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
     public FormulaireDossier() {
         initComponents();
         instance = this;
-        ControleurDossier.creationDeTablesSysteme();
+//        ControleurDossier.creationDeTablesSysteme();
 
         remplirListeVisites();
     }

@@ -1,0 +1,53 @@
+- Creation Tables Système.lua
+-- Created with SQLiteManager 4.7.0
+-- On Saturday, April 28, 2018
+
+CREATE TABLE IF NOT EXISTS Medecin (codeEmploye  INTEGER  , specialite      VARCHAR(50));
+
+CREATE TABLE IF NOT EXISTS Patient (numAssMaladie  INTEGER  ,dateNaissance VARCHAR(10), genre INTEGER, villeNaissance VARCHAR(50), parent1 VARCHAR(50), parent2 VARCHAR(50));
+
+CREATE TABLE IF NOT EXISTS Personne (nom VARCHAR(50), prenom VARCHAR(50), numAssMaladie INTEGER);
+
+CREATE TABLE IF NOT EXISTS Personnel (codeEmploye INTEGER  ,  numAssMaladie INTEGER);
+
+CREATE TABLE IF NOT EXISTS Visite (idVisite INTEGER, codeEmploye INTEGER, numAssMaladie INTEGER, nomEtablissement VARCHAR(50), dateVisite VARCHAR(10), note VARCHAR(256));
+
+CREATE TABLE IF NOT EXISTS Traitement (idTraitement INTEGER,  idVisite INTEGER,  medicament VARCHAR(50),  procedure VARCHAR(50), hospitalisation INTEGER);
+
+CREATE TABLE IF NOT EXISTS Diagnostique (idVisite INTEGER  , diagnostique VARCHAR(256));
+
+CREATE TABLE IF NOT EXISTS Antecedent (numAssMaladie INTEGER,  diagnostique VARCHAR(256),  procedure VARCHAR(256),  nomMedecin VARCHAR(50), dateDebutTraitement VARCHAR(10), dateFinTraitement VARCHAR(10));
+
+
+INSERT INTO Medecin VALUES (777000777, 'Psychiatre');
+INSERT INTO Medecin VALUES (111888999, 'Physiotherapeute');
+
+INSERT INTO Patient VALUES (911911911, '02-25-1995', 1, 'Toronto', 'Steve', 'Aisha');
+INSERT INTO Patient VALUES (777777777, '03-18-1975', 1, 'Quebec', 'Martin', 'Nicole');
+
+INSERT INTO Personne VALUES ('Doctor', 'Emilie', 111222333);
+INSERT INTO Personne VALUES ('Mydoctor', 'Katia', 100200300);
+INSERT INTO Personne VALUES ('Professionnelle', 'Nadia', 690690690);
+INSERT INTO Personne VALUES ('Fakedoctor', 'Lucy', 444555666);
+INSERT INTO Personne VALUES ('Mauvaispatient', 'Mahmoud', 911911911);
+INSERT INTO Personne VALUES ('Fakehandicap', 'Jille', 777777777);
+
+INSERT INTO Personnel VALUES (111888999, 111222333);
+INSERT INTO Personnel VALUES (555666777, 690690690);
+INSERT INTO Personnel VALUES (777000777, 100200300);
+INSERT INTO Personnel VALUES (999666111, 444555666);
+
+INSERT INTO Visite VALUES (1, 777000777, 911911911, 'Bordele', '20-04-2018', 'Excellent');
+INSERT INTO Visite VALUES (2, 111888999, 911911911, 'Hopitale', '21-04-2018', 'Malade');
+INSERT INTO Visite VALUES (3, 777000777, 777777777, 'Maison', '20-04-2018', 'Content');
+INSERT INTO Visite VALUES (4, 111888999, 777777777, 'Hopitale', '21-04-2018', 'Fache');
+
+INSERT INTO Traitement VALUES (1,1, 'Huile', 'Massage', 0);
+INSERT INTO Traitement VALUES (2,2, 'Tylenole', 'Boire tylenole', 1);
+INSERT INTO Traitement VALUES (3,3, 'Vallium', 'Boire vallium', 1);
+INSERT INTO Traitement VALUES (4,4, 'Morfine', 'Rein faire', 1);
+        
+INSERT INTO Diagnostique VALUES (1, 'Malade mentale');
+INSERT INTO Diagnostique VALUES (2, 'Toujour fatigue');
+INSERT INTO Diagnostique VALUES (3, 'Idiot anormal');
+INSERT INTO Diagnostique VALUES (4, 'Mal au pied');
