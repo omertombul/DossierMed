@@ -5,7 +5,11 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import com.inf600c.dossiermedical.application.ControleurVisite;
+import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -20,6 +24,7 @@ public class AffichageVisite extends javax.swing.JFrame {
         initComponents();
     }
 
+    ControleurVisite controleurVisite = new ControleurVisite();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +38,11 @@ public class AffichageVisite extends javax.swing.JFrame {
         affichageVisitejTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         affichageVisitejTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +73,29 @@ public class AffichageVisite extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modele = (DefaultTableModel) affichageVisitejTable.getModel();
+        int colonnes = modele.getColumnCount();
+        int rows = modele.getRowCount();
+        Object[] attributesVisite = new Object[colonnes];
+        
+        ArrayList listAttributsVisite = new ArrayList();
+        for ( int col = 0; col < colonnes; col++ ) {
+            
+            if(col == 0){
+                int value = (int) modele.getValueAt( 0, col );
+                listAttributsVisite.add(Integer.toString(value));
+            }
+            else 
+                listAttributsVisite.add((String)modele.getValueAt( 0, col ));
+        }
+        
+        controleurVisite.sauvegarderModifications(listAttributsVisite);
+        
+    }//GEN-LAST:event_formWindowClosed
 
     
 

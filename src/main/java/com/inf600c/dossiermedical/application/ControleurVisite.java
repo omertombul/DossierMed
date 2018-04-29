@@ -12,8 +12,10 @@ import com.inf600c.dossiermedical.domaine.Patient;
 import com.inf600c.dossiermedical.domaine.Visite;
 import com.inf600c.dossiermedical.domaine.Visite.Builder;
 import com.inf600c.dossiermedical.servicestechniques.DB;
+import com.inf600c.dossiermedical.servicestechniques.DB2;
 import com.inf600c.dossiermedical.servicestechniques.DateVisite;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +27,7 @@ public class ControleurVisite {
     DB db = new DB();
     Builder builderVisite = new Visite.Builder();
     Diagnostique diagnostique = new Diagnostique();
+    DB2 db2 = new DB2();
     
     public void setIdVisite(){
         int idVisite;
@@ -76,6 +79,10 @@ public class ControleurVisite {
             return false;
         
         return true;
+    }
+    
+    public void sauvegarderModifications(ArrayList listAttributsVisite){
+        db2.sauvegarderModifications(listAttributsVisite);
     }
     
 }
