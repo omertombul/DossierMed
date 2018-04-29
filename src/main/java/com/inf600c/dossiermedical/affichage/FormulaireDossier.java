@@ -77,6 +77,11 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         ouvrirAntecedentsjButton.setText("Ouvrir Antecedents");
         ouvrirAntecedentsjButton.setEnabled(false);
+        ouvrirAntecedentsjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ouvrirAntecedentsjButtonActionPerformed(evt);
+            }
+        });
 
         ajouterVisitejButton.setText("ajouterVisite");
         ajouterVisitejButton.setEnabled(false);
@@ -231,9 +236,32 @@ public class FormulaireDossier extends javax.swing.JFrame {
         
         affichageVisite.setVisible(true);
     }//GEN-LAST:event_afficherVisitejButtonActionPerformed
-    
-    
 
+    private void ouvrirAntecedentsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirAntecedentsjButtonActionPerformed
+
+         AffichageAntecedant affichageAntedcedant = new AffichageAntecedant();
+         
+        
+        ArrayList antecedantList = controleurDossier.trouverAttributsAntecedants(Dossier.numAssMaladie);
+                
+        DefaultTableModel model = (DefaultTableModel) affichageAntedcedant.tableAfficheAntecedantjTable1.getModel();
+        Object medecin = antecedantList.get(0);
+        Object traitement = antecedantList.get(4);
+        Object diagnostique = antecedantList.get(2);
+        Object date = antecedantList.get(1);
+        
+        model.addRow(new Object[]{Dossier.numAssMaladie, diagnostique, traitement, medecin, date});
+        
+        if(Dossier.validerIfMedecin())
+            affichageAntedcedant.tableAfficheAntecedantjTable1.setEnabled(rootPaneCheckingEnabled);
+        else
+            affichageAntedcedant.tableAfficheAntecedantjTable1.setEnabled(false);
+        
+        affichageAntedcedant.setVisible(true);
+        
+    }//GEN-LAST:event_ouvrirAntecedentsjButtonActionPerformed
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherVisitejButton;
     private javax.swing.JButton ajouterVisitejButton;

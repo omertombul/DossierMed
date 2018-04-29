@@ -313,6 +313,44 @@ public class DB {
         return attributesVisites;  
     }
     
+    public ArrayList trouverAttributsAntecedants(int numAssMaladie){
+    
+            ArrayList attributesAntecedants = new ArrayList();
+         try {
+            statement = sq.conn.createStatement();
+            ResultSet rs;
+            rs = statement.executeQuery("SELECT DISTINCT specialite, dateVisite, diagnostique, medicament, procedure\n" +
+                                        "FROM Visite JOIN Traitement Join Medecin  JOIN Diagnostique\n" +
+                                        "WHERE Visite.idVisite = Traitement.idVisite and Visite.codeEmploye = Medecin.codeEmploye and Visite.idVisite = Diagnostique.idVisite and\n" +
+                                        "numAssMaladie = " + numAssMaladie  );
+            
+            while(rs.next()) {
+                Object objectMedecin = rs.getObject(1);
+                Object objectDateVisite = rs.getObject(2);
+                Object objectDiagnostique = rs.getObject(3);
+                Object objectMedicament = rs.getObject(4);
+                Object objectProcedure = rs.getObject(5);
+               
+                
+                
+                
+                attributesAntecedants.add((String)objectMedecin);
+                attributesAntecedants.add((String)objectDateVisite);
+                attributesAntecedants.add((String)objectDiagnostique);
+                attributesAntecedants.add((String)objectMedicament);
+                attributesAntecedants.add((String)objectProcedure);
+                
+            }
+         
+         } catch (SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return attributesAntecedants;  
+        
+        
+         
+    }
+    
 /*    
     public boolean idExiste(String table, String columnName, int id) throws SQLException{
         statement = sq.conn.createStatement();
