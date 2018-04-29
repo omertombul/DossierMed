@@ -49,6 +49,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
         ouvrirAntecedentsjButton = new javax.swing.JButton();
         ajouterVisitejButton = new javax.swing.JButton();
         codeEmployejTextField = new javax.swing.JTextField();
+        afficherVisitejButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -90,6 +91,14 @@ public class FormulaireDossier extends javax.swing.JFrame {
             }
         });
 
+        afficherVisitejButton.setText("Afficher Visite");
+        afficherVisitejButton.setToolTipText("");
+        afficherVisitejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afficherVisitejButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +122,8 @@ public class FormulaireDossier extends javax.swing.JFrame {
                             .addComponent(ouvrirAntecedentsjButton)
                             .addComponent(visitesjLabel)
                             .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ajouterVisitejButton))))
+                            .addComponent(ajouterVisitejButton)
+                            .addComponent(afficherVisitejButton))))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,8 +137,13 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numAssMaladiejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listeVisitesjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(afficherVisitejButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ouvrirAntecedentsjButton)
@@ -205,6 +220,10 @@ public class FormulaireDossier extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void listeVisitesjComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxKeyPressed
+        
+    }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
+
+    private void afficherVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherVisitejButtonActionPerformed
         AffichageVisite affichageVisite = new AffichageVisite();
          
         String dateVisite = listeVisitesjComboBox.getSelectedItem().toString();
@@ -220,11 +239,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
             affichageVisite.affichageVisitejTable.setEnabled(false);
         
         affichageVisite.setVisible(true);
-    }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
+    }//GEN-LAST:event_afficherVisitejButtonActionPerformed
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton afficherVisitejButton;
     private javax.swing.JButton ajouterVisitejButton;
     private javax.swing.JTextField codeEmployejTextField;
     private javax.swing.JButton entrerButton;
