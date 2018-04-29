@@ -15,16 +15,14 @@ import javax.swing.JOptionPane;
  */
 public class Dossier {
     
-    static DB db;
+    static DB db= new DB();
     
     public static int numAssMaladie;
     public static int codeEmploye;
     
-    public static boolean validerDossier() throws SQLException{
-        db = new DB();
+    public static boolean validerDossier(){
         boolean numAssMaladieExiste = db.validerIfExiste(numAssMaladie, "numAssMaladie", "Patient");
         boolean codeEmployeExiste = db.validerIfExiste(Dossier.codeEmploye, "codeEmploye", "Personnel");
-        boolean medecinExiste = db.validerIfExiste(Dossier.codeEmploye, "codeEmploye", "Medecin");
 
         if(!numAssMaladieExiste ){
             
@@ -35,19 +33,19 @@ public class Dossier {
             return false;
         }
             
-        
         if(!codeEmployeExiste){
             JOptionPane.showMessageDialog(null, 
                               "Code Employe n'existe pas!", 
                               "WARNING", 
                               JOptionPane.WARNING_MESSAGE);
             return false;
-        }else if(medecinExiste){
-            
-        }
-        
+        }        
         return true;
     }
     
-    
+    public static boolean validerIfMedecin(){
+        boolean medecinExiste = db.validerIfExiste(Dossier.codeEmploye, "codeEmploye", "Medecin");
+
+        return medecinExiste;
+    }
 }

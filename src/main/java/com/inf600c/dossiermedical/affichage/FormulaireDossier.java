@@ -163,18 +163,19 @@ public class FormulaireDossier extends javax.swing.JFrame {
             Dossier.codeEmploye = Integer.parseInt(textIDProfessionnel);
             boolean accesValide = false;
             
-            try {
-               accesValide = Dossier.validerDossier();
-            } catch (SQLException ex) {
-                Logger.getLogger(FormulaireDossier.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            accesValide = Dossier.validerDossier();
+            //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
             if (accesValide){    
                 remplirListeVisites();
-                //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
+                
+                if(Dossier.validerIfMedecin())
+                    ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
+                else
+                   ajouterVisitejButton.setEnabled(false); 
+
                 ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
                 listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
                 visitesjLabel.setEnabled(rootPaneCheckingEnabled);
-                ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
             }
         }
     
@@ -196,10 +197,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
     private void remplirListeVisites(){
         ArrayList listeVisites = controleurDossier.trouverVisitesPatient();
-        
         listeVisites.forEach(item->listeVisitesjComboBox.addItem((String)item));
- //       listeVisitesjComboBox.addActionListener(listeVisitesjComboBox);
-    
     }
     
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -215,6 +213,11 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 
         DefaultTableModel model = (DefaultTableModel) affichageVisite.affichageVisitejTable.getModel();
         model.addRow(new Object[]{Dossier.numAssMaladie, listAttributsVisite.get(0), listAttributsVisite.get(1), listAttributsVisite.get(2),listAttributsVisite.get(3),listAttributsVisite.get(4),listAttributsVisite.get(5),listAttributsVisite.get(6)});
+        
+        if(Dossier.validerIfMedecin())
+            affichageVisite.affichageVisitejTable.setEnabled(rootPaneCheckingEnabled);
+        else
+            affichageVisite.affichageVisitejTable.setEnabled(false);
         
         affichageVisite.setVisible(true);
     }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
