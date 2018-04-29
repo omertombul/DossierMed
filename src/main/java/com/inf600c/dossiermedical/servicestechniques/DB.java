@@ -253,7 +253,6 @@ public class DB {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
         return patient;
     }
     
