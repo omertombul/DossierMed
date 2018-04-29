@@ -93,6 +93,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         afficherVisitejButton.setText("Afficher Visite");
         afficherVisitejButton.setToolTipText("");
+        afficherVisitejButton.setEnabled(false);
         afficherVisitejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 afficherVisitejButtonActionPerformed(evt);
@@ -191,6 +192,7 @@ public class FormulaireDossier extends javax.swing.JFrame {
                 ouvrirAntecedentsjButton.setEnabled(rootPaneCheckingEnabled);
                 listeVisitesjComboBox.setEnabled(rootPaneCheckingEnabled);
                 visitesjLabel.setEnabled(rootPaneCheckingEnabled);
+                 afficherVisitejButton.setEnabled(rootPaneCheckingEnabled);
             }
         }
     
