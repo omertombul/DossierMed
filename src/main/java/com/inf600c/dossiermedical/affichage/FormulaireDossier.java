@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -206,11 +207,16 @@ public class FormulaireDossier extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void listeVisitesjComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxKeyPressed
-        new AffichageVisite().setVisible(true); 
+        AffichageVisite affichageVisite = new AffichageVisite();
+         
         String dateVisite = listeVisitesjComboBox.getSelectedItem().toString();
         
         ArrayList listAttributsVisite = controleurDossier.trouverAttributesVisite(Dossier.numAssMaladie, dateVisite);
+                
+        DefaultTableModel model = (DefaultTableModel) affichageVisite.affichageVisitejTable.getModel();
+        model.addRow(new Object[]{Dossier.numAssMaladie, listAttributsVisite.get(0), listAttributsVisite.get(1), listAttributsVisite.get(2),listAttributsVisite.get(3),listAttributsVisite.get(4),listAttributsVisite.get(5),listAttributsVisite.get(6)});
         
+        affichageVisite.setVisible(true);
     }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
     
     

@@ -5,6 +5,8 @@
  */
 package com.inf600c.dossiermedical.affichage;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author Lado
@@ -34,7 +36,7 @@ public class AffichageVisite extends javax.swing.JFrame {
 
         affichageVisitejTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Assurance Maladie", "Etablissement", "Date Viste", "Diagnostique", "Medicament", "Procedure", "Hospitalisation", "Note"
@@ -55,16 +57,17 @@ public class AffichageVisite extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable affichageVisitejTable;
+    protected javax.swing.JTable affichageVisitejTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
