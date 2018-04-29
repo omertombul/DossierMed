@@ -8,7 +8,6 @@ package com.inf600c.dossiermedical.application;
 import com.inf600c.dossiermedical.domaine.Dossier;
 import com.inf600c.dossiermedical.fondation.CreationTables;
 import com.inf600c.dossiermedical.servicestechniques.DB;
-import java.awt.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;

@@ -74,11 +74,6 @@ public class FormulaireDossier extends javax.swing.JFrame {
         visitesjLabel.setEnabled(false);
 
         listeVisitesjComboBox.setEnabled(false);
-        listeVisitesjComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                listeVisitesjComboBoxKeyPressed(evt);
-            }
-        });
 
         ouvrirAntecedentsjButton.setText("Ouvrir Antecedents");
         ouvrirAntecedentsjButton.setEnabled(false);
@@ -184,12 +179,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
             boolean accesValide = false;
             
             accesValide = Dossier.validerDossier();
-            //activer la presentation de la liste de visites et activer le bouton Ouvrir Antecedents
+            //activer la presentation de la liste de visites et activer les boutons
             if (accesValide){    
                 remplirListeVisites();
                 
                 if(Dossier.validerIfMedecin())
-                    ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
+                   ajouterVisitejButton.setEnabled(rootPaneCheckingEnabled);
                 else
                    ajouterVisitejButton.setEnabled(false); 
 
@@ -223,10 +218,6 @@ public class FormulaireDossier extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         listeVisitesjComboBox.removeAllItems();
     }//GEN-LAST:event_formWindowClosing
-
-    private void listeVisitesjComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listeVisitesjComboBoxKeyPressed
-        
-    }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
 
     private void afficherVisitejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherVisitejButtonActionPerformed
         AffichageVisite affichageVisite = new AffichageVisite();
