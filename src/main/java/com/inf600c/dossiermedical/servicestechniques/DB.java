@@ -320,7 +320,7 @@ public class DB {
             statement = sq.conn.createStatement();
             ResultSet rs;
             rs = statement.executeQuery("SELECT DISTINCT specialite, dateVisite, diagnostique, medicament, procedure\n" +
-                                        "FROM Visite JOIN Traitement JOIN Diagnostique\n" +
+                                        "FROM Visite JOIN Traitement Join Medecin  JOIN Diagnostique\n" +
                                         "WHERE Visite.idVisite = Traitement.idVisite and Visite.codeEmploye = Medecin.codeEmploye and Visite.idVisite = Diagnostique.idVisite and\n" +
                                         "numAssMaladie = " + numAssMaladie  );
             
@@ -328,8 +328,8 @@ public class DB {
                 Object objectMedecin = rs.getObject(1);
                 Object objectDateVisite = rs.getObject(2);
                 Object objectDiagnostique = rs.getObject(3);
-                Object objectMedicament = rs.getObject(5);
-                Object objectProcedure = rs.getObject(6);
+                Object objectMedicament = rs.getObject(4);
+                Object objectProcedure = rs.getObject(5);
                
                 
                 

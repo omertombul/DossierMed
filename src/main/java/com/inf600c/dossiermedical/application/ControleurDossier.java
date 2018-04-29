@@ -37,4 +37,8 @@ public class ControleurDossier {
     public ArrayList trouverAttributesVisite(int numAssMaladie, String dateVisite){
         return db.trouverAttributesVisite(numAssMaladie, dateVisite);
     }
+    
+    public ArrayList trouverAttributsAntecedants(int numAssMaladie){
+        return db.trouverAttributsAntecedants(numAssMaladie);
+    }
 }

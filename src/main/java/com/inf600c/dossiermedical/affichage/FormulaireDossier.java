@@ -238,7 +238,27 @@ public class FormulaireDossier extends javax.swing.JFrame {
     }//GEN-LAST:event_afficherVisitejButtonActionPerformed
 
     private void ouvrirAntecedentsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirAntecedentsjButtonActionPerformed
-        // TODO add your handling code here:
+
+         AffichageAntecedant affichageAntedcedant = new AffichageAntecedant();
+         
+        
+        ArrayList antecedantList = controleurDossier.trouverAttributsAntecedants(Dossier.numAssMaladie);
+                
+        DefaultTableModel model = (DefaultTableModel) affichageAntedcedant.tableAfficheAntecedantjTable1.getModel();
+        Object medecin = antecedantList.get(0);
+        Object traitement = antecedantList.get(4);
+        Object diagnostique = antecedantList.get(2);
+        Object date = antecedantList.get(1);
+        
+        model.addRow(new Object[]{Dossier.numAssMaladie, diagnostique, traitement, medecin, date});
+        
+        if(Dossier.validerIfMedecin())
+            affichageAntedcedant.tableAfficheAntecedantjTable1.setEnabled(rootPaneCheckingEnabled);
+        else
+            affichageAntedcedant.tableAfficheAntecedantjTable1.setEnabled(false);
+        
+        affichageAntedcedant.setVisible(true);
+        
     }//GEN-LAST:event_ouvrirAntecedentsjButtonActionPerformed
     
     
