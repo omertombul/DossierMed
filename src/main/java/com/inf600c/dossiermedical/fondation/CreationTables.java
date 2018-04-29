@@ -5,7 +5,6 @@
  */
 package com.inf600c.dossiermedical.fondation;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -17,41 +16,7 @@ public class CreationTables {
     
     SqlConnection sq = SqlConnection.getConnection();
     Statement statement;
-/*    
-    public void createTableVisite(Connection conn) throws SQLException {
-        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Visite"
-                + "  (idVisite          INTEGER,"
-                + "   codeEmploye       INTEGER,"
-                + "   numAssMaladie     INTEGER,"
-                + "   nomEtablissement  VARCHAR(50),"
-                + "   dateVisite        VARCHAR(10),"
-                + "   note              VARCHAR(256))";
 
-        statement = conn.createStatement();
-        statement.execute(sqlCreateTable);
-    }
-    
-    public void createTableTraitement(Connection conn) throws SQLException {
-        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Traitement"
-                + "  (idTraitement      INTEGER,"
-                + "   idVisite          INTEGER,"
-                + "   medicament        VARCHAR(50),"
-                + "   procedure         VARCHAR(50),"
-                + "   hospitalisation   INTEGER)";
-
-        statement = conn.createStatement();
-        statement.execute(sqlCreateTable);
-    }
-    
-    public void createTableDiagnostique(Connection conn) throws SQLException {
-        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS Diagnostique"
-                + "  (idVisite          INTEGER  ,"
-                + "   diagnostique      VARCHAR(256))";
-
-        statement = conn.createStatement();
-        statement.execute(sqlCreateTable);
-    }
-*/    
     public void createSystemTables() throws SQLException{
         
         statement = sq.conn.createStatement();

@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package com.inf600c.dossiermedical.domaine;
-import java.util.Date;
 
-/**
- *
- * @author Lado
+/** 
+ * 
+ * Example de code de Jacques Berger était utilisé lors de la création de cette classe
+ * https://github.com/jacquesberger/exemplesINF5153/blob/master/GoF/Builder/src/main/java/org/jberger/patterns/builder/builder/Person.java
  */
 public class Visite {
     
