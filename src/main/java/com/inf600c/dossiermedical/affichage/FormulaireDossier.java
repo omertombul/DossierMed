@@ -209,7 +209,8 @@ public class FormulaireDossier extends javax.swing.JFrame {
         new AffichageVisite().setVisible(true); 
         String dateVisite = listeVisitesjComboBox.getSelectedItem().toString();
         
-        // ControleurDossier.getVisiteAttributes();
+        ArrayList listAttributsVisite = controleurDossier.trouverAttributesVisite(Dossier.numAssMaladie, dateVisite);
+        
     }//GEN-LAST:event_listeVisitesjComboBoxKeyPressed
     
     

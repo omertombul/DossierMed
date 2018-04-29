@@ -35,4 +35,7 @@ public class ControleurDossier {
         return db.trouverListeVisites(Dossier.numAssMaladie);
     }
         
+    public ArrayList trouverAttributesVisite(int numAssMaladie, String dateVisite){
+        return db.trouverAttributesVisite(numAssMaladie, dateVisite);
+    }
 }

@@ -276,6 +276,44 @@ public class DB {
         return listeVisites;
     }
     
+    public ArrayList trouverAttributesVisite(int numAssMaladie, String dateVisite){
+        
+        ArrayList attributesVisites = new ArrayList();
+        
+        try {
+            statement = sq.conn.createStatement();
+            ResultSet rs;
+            rs = statement.executeQuery("SELECT DISTINCT nomEtablissement, dateVisite, note, diagnostique, medicament, procedure, hospitalisation\n" +
+                                        "FROM Visite JOIN Traitement JOIN Diagnostique\n" +
+                                        "WHERE Visite.idVisite = Traitement.idVisite and Visite.idVisite = Diagnostique.idVisite and\n" +
+                                        "numAssMaladie = " + numAssMaladie + " and dateVisite = '" + dateVisite + "'");
+            
+            while(rs.next()) {
+                Object objectNomEtablissement = rs.getObject(1);
+                Object objectDateVisite = rs.getObject(2);
+                Object objectNote = rs.getObject(3);
+                Object objectDiagnostique = rs.getObject(4);
+                Object objectMedicament = rs.getObject(5);
+                Object objectProcedure = rs.getObject(6);
+                Object objectHospitalisation = rs.getObject(7);
+                
+                String hospitalisation = (int)objectHospitalisation == 0 ? "Non Hospitalisé" : "Hospitalisé";
+                
+                attributesVisites.add((String)objectNomEtablissement);
+                attributesVisites.add((String)objectDateVisite);
+                attributesVisites.add((String)objectNote);
+                attributesVisites.add((String)objectDiagnostique);
+                attributesVisites.add((String)objectMedicament);
+                attributesVisites.add((String)objectProcedure);
+                attributesVisites.add(hospitalisation);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return attributesVisites;  
+    }
+    
 /*    
     public boolean idExiste(String table, String columnName, int id) throws SQLException{
         statement = sq.conn.createStatement();
