@@ -34,13 +34,13 @@ public class AffichageAntecedant extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Diagnostique", "Traitement", "Médecin Traitant", "Début Maldie", "Fin Maladie"
+                "Diagnostique", "Traitement", "Médecin Traitant", "Début Maldie"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

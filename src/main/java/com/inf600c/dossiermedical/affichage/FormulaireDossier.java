@@ -82,6 +82,11 @@ public class FormulaireDossier extends javax.swing.JFrame {
 
         ouvrirAntecedentsjButton.setText("Ouvrir Antecedents");
         ouvrirAntecedentsjButton.setEnabled(false);
+        ouvrirAntecedentsjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ouvrirAntecedentsjButtonActionPerformed(evt);
+            }
+        });
 
         ajouterVisitejButton.setText("ajouterVisite");
         ajouterVisitejButton.setEnabled(false);
@@ -240,9 +245,12 @@ public class FormulaireDossier extends javax.swing.JFrame {
         
         affichageVisite.setVisible(true);
     }//GEN-LAST:event_afficherVisitejButtonActionPerformed
-    
-    
 
+    private void ouvrirAntecedentsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ouvrirAntecedentsjButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ouvrirAntecedentsjButtonActionPerformed
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton afficherVisitejButton;
     private javax.swing.JButton ajouterVisitejButton;
